@@ -8,6 +8,7 @@
     height: 100%;
     opacity: 0;
     transition: 500ms all ease-in;
+    z-index: 1;
 }
 
 .sidebar-mobile.show {
