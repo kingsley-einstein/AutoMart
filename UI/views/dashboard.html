@@ -6,13 +6,160 @@
     <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/shared.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/alert.css">
+    <link rel="stylesheet" href="../css/sidebar-mobile.css">
+    <link rel="stylesheet" href="../css/links.css">
+    <link rel="stylesheet" href="../css/cards.css">
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            Heyy
+    <div class="main">
+        <div class="navbar">
+            <a href="#">
+                <img src="../svg/icons8-car-50-2.png">
+            </a>
+            <div class="nav-menu">
+                <a href="#">Main</a>
+                <a href="#">Order</a>
+                <a href="#">My ADs</a>
+                <a href="#">Post New AD</a>
+                <a href="#" class="black-button-link">Logout</a>
+            </div>
+            <div class="nav-mobile-menu">
+                <div class="hamburger" id="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
+        <div class="sidebar-mobile" id="sidebar-mobile">
+            <ul>
+                <li><a href="#">Main</a></li>
+                <li><a href="#">Order</a></li>
+                <li><a href="#">My ADs</a></li>
+                <li><a href="#">Post New AD</a></li>
+            </ul>
+        </div>
+        <section id="flex" class="flex">
+            <div class="card">
+                <div>
+                    <img src="../svg/ads.svg">
+                </div>
+                <div>
+                    <p class="info-text">
+                        Posted ADs
+                    </p>
+                    <p class="info-text">
+                        45
+                    </p>
+                </div>
+                <div>
+                    <a href="#" class="green-button-link">View</a>
+                </div>
+            </div>
+            <div class="card">
+                <div>
+                    <img src="../svg/online-order.svg">
+                </div>
+                <div>
+                    <p class="info-text">
+                        Purchase Orders
+                    </p>
+                    <p class="info-text">
+                        30
+                    </p>
+                </div>
+                <div>
+                        <a href="#" class="green-button-link">View</a>
+                    </div>
+            </div>
+            <div class="card">
+                <div>
+                    <img src="../svg/triangle.svg">
+                </div>
+                <div>
+                    <p class="info-text">
+                        Flagged ADs
+                    </p>
+                    <p class="info-text">
+                        0
+                    </p>
+                </div>
+                <div>
+                        <a href="#" class="green-button-link">View</a>
+                    </div>
+            </div>
+            <div class="card">
+                <div>
+                    <img src="../svg/sold.svg">
+                </div>
+                <div>
+                    <p class="info-text">
+                        Sold
+                    </p>
+                    <p class="info-text">
+                        17
+                    </p>
+                </div>
+                <div>
+                        <a href="#" class="green-button-link">View</a>
+                    </div>
+            </div>
+            <div class="card">
+                <div>
+                    <img src="../svg/pending.svg">
+                </div>
+                <div>
+                    <p class="info-text">
+                        Pending
+                    </p>
+                    <p class="info-text">
+                        15
+                    </p>
+                </div>
+                <div>
+                        <a href="#" class="green-button-link">View</a>
+                    </div>
+            </div>
+            <div class="card">
+                    <div>
+                        <img src="../svg/x-button.svg">
+                    </div>
+                    <div>
+                        <p class="info-text">
+                            Rejected
+                        </p>
+                        <p class="info-text">
+                            5
+                        </p>
+                    </div>
+                    <div>
+                            <a href="#" class="green-button-link">View</a>
+                        </div>
+                </div>
+        </section>
+        <section id="footer" class="footer">
+                <div class="flex">
+                    <div class="explain">
+                        <p class="info-text">
+                            <h1>Important Notice!</h1>
+                        </p>
+                        <p class="info-text">
+                            AutoMart is made with love by Kingsley Victor for the Andela developer challenge.
+                        </p>
+                        <p class="info-text">
+                            This app should be used with discretion as AutoMart does not guarantee non-fraudulent deals.
+                        </p>
+                    </div>
+                </div>
+                <div class="s-media">
+                    <img src="../svg/facebook-logo-in-circular-button-outlined-social-symbol.svg">
+                    <img src="../svg/social-twitter-circular-button.svg">
+                    <img src="../svg/google-plus-circular-button.svg">
+                    <img src="../svg/instagram.svg">
+                </div>
+            </section>
     </div>
+    <script src="../js/sidebars.js"></script>
 </body>
 </html>

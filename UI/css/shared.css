@@ -82,6 +82,20 @@ ul {
     font-family: 'Roboto', sans-serif;
 }
 
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center.col {
+    flex-flow: column wrap;
+}
+
+.center.row {
+    flex-flow: row wrap;
+}
+
 .hero h1 {
     font-size: 4rem !important;
     font-weight: 400;

@@ -3,6 +3,7 @@
     border-radius: 5px;
     padding: 4px 6px;
     transition: 500ms opacity ease-in-out;
+    height: auto;
 }
 
 .black-button-link:hover {
@@ -20,4 +21,15 @@
 
 .blue-button-link:hover {
     background: mediumseagreen;
+}
+
+.green-button-link {
+    background: mediumspringgreen;
+    padding: 8px 10px;
+    border: none;
+    transition: 500ms all ease-in;
+}
+
+.green-button-link:hover {
+    opacity: 0.5;
 }

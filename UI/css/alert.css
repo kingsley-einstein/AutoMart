@@ -5,6 +5,7 @@
     border-radius: 5px;
     transition: 500ms all ease-in;
     padding: 18px;
+    margin: 10px;
 }
 
 .alert-box.show {
