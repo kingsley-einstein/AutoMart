@@ -1,38 +1,23 @@
-a {
-    margin: 8px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: 500ms all ease-out;
+.black-button-link {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 4px 6px;
+    transition: 500ms opacity ease-in-out;
 }
 
-a:hover {
-    opacity: 0.7;
+.black-button-link:hover {
+    opacity: 0.6;
 }
 
-.sign-up {
-    padding: 10px 12px;
-    background: dodgerblue;
-    color: whitesmoke;
-    width: 100%;
-    border: none;
-    cursor: pointer;
-}
-
-.sign-in {
-    padding: 10px 12px;
-    background: mediumseagreen;
-    color: whitesmoke;
-    width: 100%;
-    border: none;
-    cursor: pointer;
-}
-
-.action-anchor {
-    padding: 10px 12px;
+.blue-button-link {
+    border: 1px solid mediumslateblue;
+    border-radius: 8px;
+    padding: 12px 10px;
+    transition: 500ms background ease-in;
     background: transparent;
-    color: black;
-    display: block;
-    border: 1px solid black;
-    cursor: pointer;
+    color: white;
+}
+
+.blue-button-link:hover {
+    background: mediumseagreen;
 }

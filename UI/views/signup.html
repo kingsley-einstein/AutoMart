@@ -7,18 +7,41 @@
         <link rel="stylesheet" href="../css/shared.css">
         <link rel="stylesheet" href="../css/forms.css">
         <link rel="stylesheet" href="../css/links.css">
+        <link rel="stylesheet" href="../css/sidebar-mobile.css">
         <title>Auto Mart | Sign Up</title>
     </head>
     <body>
-        <div class="container">
-            <div class="nav">
-                <nav>
-                    <a href="index.html" class="action-anchor">Home</a>
-                </nav>
-            </div>
+        <div class="main">
+                <div class="navbar">
+                        <a href="#">
+                            <img src="../svg/icons8-car-50-2.png">
+                        </a>
+                        <div class="nav-menu">
+                            <a href="index.html">Home</a>
+                            <a href="signin.html" class="black-button-link">Login</a>
+                        </div>
+                        <div class="nav-mobile-menu">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div class="hamburger" id="hamburger">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Visible only on mobile-->
+                    <div class="sidebar-mobile" id="sidebar-mobile">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="signin.html">Login</a></li>
+                        </ul>
+                    </div>
             <div class="flex">
                 <div class="center">
                    <div class="form-group">
+                       <h3>Register</h3>
                        <form>
                            <input class="input" type="email" placeholder="Email">
                            <input class="input" type="text" placeholder="First Name">
@@ -33,6 +56,28 @@
                    </div> 
                 </div>
             </div>
+            <section id="footer" class="footer">
+                <div class="flex">
+                    <div class="explain">
+                        <p class="info-text">
+                            <h1>Important Notice!</h1>
+                        </p>
+                        <p class="info-text">
+                            AutoMart is made with love by Kingsley Victor for the Andela developer challenge.
+                        </p>
+                        <p class="info-text">
+                            This app should be used with discretion as AutoMart does not guarantee non-fraudulent deals.
+                        </p>
+                    </div>
+                </div>
+                <div class="s-media">
+                    <img src="../svg/facebook-logo-in-circular-button-outlined-social-symbol.svg">
+                    <img src="../svg/social-twitter-circular-button.svg">
+                    <img src="../svg/google-plus-circular-button.svg">
+                    <img src="../svg/instagram.svg">
+                </div>
+            </section>
         </div>
+        <script src="../js/sidebars.js"></script>
     </body>
 </html>
