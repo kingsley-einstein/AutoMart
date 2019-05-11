@@ -1,1 +1,1 @@
-# AutoMart
+# The UI for the AutoMart app - Andela Challenge 1

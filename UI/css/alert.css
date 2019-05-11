@@ -1,0 +1,20 @@
+.alert-box {
+    opacity: 0;
+    width: 50%;
+    color: white;
+    border-radius: 5px;
+    transition: 500ms all ease-in;
+    padding: 18px;
+}
+
+.alert-box.show {
+    opacity: 1;
+}
+
+.alert-box.error {
+    background:mediumvioletred;
+}
+
+.alert-box.success {
+    background: mediumseagreen;
+}

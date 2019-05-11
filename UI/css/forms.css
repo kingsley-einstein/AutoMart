@@ -1,0 +1,16 @@
+.form-group {
+    background: white;
+    border-radius: 5px;
+    padding: 18px;
+    text-align: center;
+}
+
+.form-group input {
+    margin: 14px;
+    display: block;
+    transition: 500ms all ease-in;
+}
+
+.form-group input:focus {
+    background-color: antiquewhite;
+}
