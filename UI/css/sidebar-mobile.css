@@ -1,0 +1,39 @@
+.sidebar-mobile {
+    position: absolute;
+    top: 0;
+    left: -400px;
+    bottom: 0;
+    background: ghostwhite;
+    width: 50%;
+    height: 100%;
+    opacity: 0;
+    transition: 500ms all ease-in;
+}
+
+.sidebar-mobile.show {
+    left: 0;
+    opacity: 1;
+}
+
+.sidebar-mobile ul {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.sidebar-mobile a {
+    display: block;
+    padding: 10px 12px;
+}
+
+.sidebar-mobile a:hover {
+    background: black;
+    opacity: 0.5;
+}
+
+@media screen and (min-width: 720px) {
+    .sidebar-mobile {
+        display: none;
+    }
+}
