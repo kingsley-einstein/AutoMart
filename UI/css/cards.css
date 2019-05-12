@@ -15,6 +15,15 @@
     height: 150px;
 }
 
+.card img.wider {
+    width: 200px;
+    height: 200px;
+}
+
+.card > div {
+    margin: 8px;
+}
+
 @media screen and (max-width: 719px) {
     .card {
         width: 80%;
