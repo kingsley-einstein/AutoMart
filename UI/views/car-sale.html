@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Auto Mart | New Car Sale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/forms.css">
+    <link rel="stylesheet" href="../css/links.css">
+    <link rel="stylesheet" href="../css/alert.css">
+    <link rel="stylesheet" href="../css/sidebar-mobile.css">
+</head>
+<body>
+    <div class="main">
+            <div class="navbar">
+                    <a href="#">
+                        <h3>AutoMart</h3>
+                    </a>
+                    <div class="nav-menu">
+                        <a href="dashboard.html">Main</a>
+                        <a href="#">Order</a>
+                        <a href="my-ads.html">My ADs</a>
+                        <a href="car-sale.html">Post New AD</a>
+                        <a href="#" class="black-button-link">Logout</a>
+                    </div>
+                    <div class="nav-mobile-menu">
+                        <div class="hamburger" id="hamburger">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-mobile" id="sidebar-mobile">
+                    <ul>
+                        <li><a href="dashboard.html">Main</a></li>
+                        <li><a href="#">Order</a></li>
+                        <li><a href="my-ads.html">My ADs</a></li>
+                        <li><a href="car-sale.html">Post New AD</a></li>
+                    </ul>
+                </div>
+                <div class="flex">
+                    <div class="center col">
+                        <div class="alert-box" id="alert-box">
+                        </div>
+                        <div class="form-group">
+                            <form id="ad_form" enctype="multipart/form-data">
+                                <input type="text" placeholder="Car Model" name="model">
+                                <input type="text" placeholder="Manufacturer" name="manufacturer">
+                                <input type="number" placeholder="Price" name="price">
+                                <input type="text" placeholder="Body Type (e.g car, truck, e.t.c)" name="body_type">
+                                <select name="state">
+                                    <option>Select State</option>
+                                    <option value="new">New</option>
+                                    <option value="old">Old</option>
+                                </select>
+                                <input type="file" placeholder="Upload Picture" name="pic">
+                                <button type="submit">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>   
+                <section id="footer" class="footer">
+                        <div class="flex">
+                            <div class="explain">
+                                <p class="info-text">
+                                    <h1>Important Notice!</h1>
+                                </p>
+                                <p class="info-text">
+                                    AutoMart is made with love by Kingsley Victor for the Andela developer challenge.
+                                </p>
+                                <p class="info-text">
+                                    This app should be used with discretion as AutoMart does not guarantee non-fraudulent deals.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="s-media">
+                            <img src="../svg/facebook-logo-in-circular-button-outlined-social-symbol.svg">
+                            <img src="../svg/social-twitter-circular-button.svg">
+                            <img src="../svg/google-plus-circular-button.svg">
+                            <img src="../svg/instagram.svg">
+                        </div>
+                    </section>
+    </div>
+    <script src="../js/sidebars.js"></script>
+    <script src="../js/car-sale.js"></script>
+</body>
+</html>

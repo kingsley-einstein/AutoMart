@@ -33,3 +33,14 @@
 .green-button-link:hover {
     opacity: 0.5;
 }
+
+.yellow-button-link {
+    background: yellow;
+    padding: 8px 10px;
+    border: none;
+    transition: 500ms all ease-in;
+}
+
+.yellow-button-link:hover {
+    opacity: 0.5;
+}
