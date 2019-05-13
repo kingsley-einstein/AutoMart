@@ -28,4 +28,8 @@
     .card {
         width: 80%;
     }
+
+    .card.wider {
+        width: 100%;
+    }
 }

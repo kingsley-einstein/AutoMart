@@ -1,0 +1,26 @@
+.filter-group {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.filter-group input {
+    margin: 14px;
+    display: block;
+    transition: 500ms all ease-in;
+    padding: 10px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    width: 200px; 
+}
+
+.filter-group input:focus {
+    background: antiquewhite;
+}
+
+@media screen and (min-width: 720px) {
+    .filter-group {
+        flex-flow: row wrap;
+    }
+}
