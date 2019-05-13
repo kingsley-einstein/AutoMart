@@ -44,3 +44,14 @@
 .yellow-button-link:hover {
     opacity: 0.5;
 }
+
+.violet-button-link {
+    background: darkorchid;
+    padding: 8px 10px;
+    border: none;
+    transition: 500ms all ease-in;
+}
+
+.violet-button-link:hover {
+    opacity: 0.5;
+}
