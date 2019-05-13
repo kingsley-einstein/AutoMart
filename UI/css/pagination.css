@@ -1,0 +1,22 @@
+.whole-section {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.paginators {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paginator {
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+    margin: 2px 2px;
+    background: floralwhite;
+    padding: 1px 1px;
+}
+
+.paginator.active {
+    border: none;
+}

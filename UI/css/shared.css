@@ -166,6 +166,11 @@ ul {
     text-align: center;
 }
 
+.flex.rd-padding {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .flex img {
     width: 200px;
     height: 200px;
