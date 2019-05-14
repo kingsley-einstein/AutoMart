@@ -6,7 +6,10 @@ adForm.addEventListener("submit", (e) => {
     //fd.forEach((value, key) => console.log(value))
     alertBox.textContent = "Successfully posted AD";
     alertBox.classList.add("show", "success");
-    setTimeout(() => alertBox.classList.remove("show", "success"), 2000);
+    setTimeout(() => {
+        alertBox.classList.remove("show", "success");
+        alertBox.textContent = "";
+    }, 2000);
     e.preventDefault();
     adForm.reset();
 });

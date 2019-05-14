@@ -28,3 +28,15 @@
 .state-text.old {
     background: darkgoldenrod;
 }
+
+.title-text {
+    font-size: 20px;
+    color: mediumblue;
+}
+
+.notif-text {
+    background: red;
+    padding: 2px 2px;
+    color: white;
+    font-size: 11px;
+}
