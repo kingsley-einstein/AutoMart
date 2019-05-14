@@ -26,8 +26,8 @@
                 <a href="car-sale.html">Post New AD</a>
                 <a href="requests.html">Requests <span id="notif" class="notif-text">1</span></a>
                 <a href="purchase-orders.html">Purchase Orders</a>
-                <a href="#">Admin <img src="../svg/admin.svg" class="img-sm-20"></a>
-                <a href="#" class="black-button-link">Logout</a>
+                <a href="admin.html">Admin <img src="../svg/admin.svg" class="img-sm-20"></a>
+                <a href="index.html" class="black-button-link">Logout</a>
             </div>
             <div class="nav-mobile-menu">
                 <div class="hamburger" id="hamburger">
@@ -45,108 +45,134 @@
                 <li><a href="car-sale.html">Post New AD</a></li>
                 <li><a href="requests.html">Requests <span id="notif" class="notif-text">1</span></a></li>
                 <li><a href="purchase-orders.html">Purchase Orders</a></li>
-                <li><a href="#">Admin <img src="../svg/admin.svg" class="img-sm-20"></a></li>
+                <li><a href="admin.html">Admin <img src="../svg/admin.svg" class="img-sm-20"></a></li>
+                <li><a href="index.html">Logout</a></li>
             </ul>
         </div>
-        <section id="whole-section" class="whole-section">
-            <section id="flex" class="flex">
-                <div class="card">
-                    <div>
-                        <img src="../img/car1.jpg" class="wider">
-                    </div>
-                    <div>
-                        <p class="info-text">
-                            Mercedes Benz
-                            <span class="price-text">$145</span>
-                        </p>
-                        <p class="info-text">
-                            <span class="state-text new">New</span>
-                        </p>
-                        <p class="info-text">
-                            <h3 class="green-text">Available</h3> 
-                        </p>
-                    </div>
-                    <div>
-                        <button class="green-button-link" onclick="viewCar()">View</button>
-                        <button class="yellow-button-link">Update</button>
-                        <button class="violet-button-link">Mark Sold</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <img src="../img/car2.jpg" class="wider">
-                    </div>
-                    <div>
-                        <p class="info-text">
-                            Mitsubishi Pajero
-                            <span class="price-text">$132</span>
-                        </p>
-                        <p class="info-text">
-                            <span class="state-text old">Old</span>
-                        </p>
-                        <p class="info-text">
-                            <h3 class="gold-text">Sold</h3>
-                        </p>
-                    </div>
-                    <div>
-                        <button class="green-button-link" onclick="viewCar()">View</button>
-                        <button class="yellow-button-link">Update</button>
-                        <button disabled class="violet-button-link">Mark Sold</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <img src="../img/car3.jpg" class="wider">
-                    </div>
-                    <div>
-                        <p class="info-text">
-                            Toyota Yaris
-                            <span class="price-text">$109</span>
-                        </p>
-                        <p class="info-text">
-                            <span class="state-text old">Old</span>
-                        </p>
-                        <p class="info-text">
-                            <h3 class="gold-text">Sold</h3>
-                        </p>
-                    </div>
-                    <div>
-                        <button class="green-button-link" onclick="viewCar()">View</button>
-                        <button class="yellow-button-link">Update</button>
-                        <button disabled class="violet-button-link">Mark Sold</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <img src="../img/car4.jpg" class="wider">
-                    </div>
-                    <div>
-                        <p class="info-text">
-                            Kia Picanto
-                            <span class="price-text">$176</span>
-                        </p>
-                        <p class="info-text">
-                            <span class="state-text new">New</span>
-                        </p>
-                        <p class="info-text">
-                            <h3 class="green-text">Available</h3>
-                        </p>
-                    </div>
-                    <div>
-                        <button class="green-button-link" onclick="viewCar()">View</button>
-                        <button class="yellow-button-link">Update</button>
-                        <button class="violet-button-link">Mark Sold</button>
-                    </div>
-                </div>
-            </section>
-            <div class="paginators">
-                    <a href="#" class="paginator active">&lt;</a>
-                    <a href="#" class="paginator active">1</a>
-                    <a href="#" class="paginator">2</a>
-                    <a href="#" class="paginator">3</a>
-                    <a href="#" class="paginator">4</a>
-                    <a href="#" class="paginator">&gt;</a>
-             </div>
+        <section class="flex rd-padding">
+            <div class="center col">
+                <div class="alert-box" id="alert-box"></div>
+                <section id="whole-section" class="whole-section">
+                        <section id="flex" class="flex">
+                            <div class="card">
+                                <div>
+                                    <img src="../img/car1.jpg" class="wider">
+                                </div>
+                                <div>
+                                    <p class="info-text">
+                                        Mercedes Benz
+                                        <span class="price-text">$145</span>
+                                    </p>
+                                    <p class="info-text">
+                                        <span class="state-text new">New</span>
+                                    </p>
+                                    <p class="info-text">
+                                        <h3 class="green-text">Available</h3> 
+                                    </p>
+                                </div>
+                                <div>
+                                    <button class="green-button-link" onclick="viewCar()">View</button>
+                                    <button class="yellow-button-link" onclick="displayBox('updateDiv1')">Update</button>
+                                    <button class="violet-button-link">Mark Sold</button>
+                                </div>
+                                <div id="updateDiv1" class="update-div">
+                                    <input class="update" type="number" value="145" placeholder="New Price">
+                                    <button class="s-button" onclick="showAlert()">Update</button>
+                                    <button class="s-button" onclick="hideBox('updateDiv1')">Close</button>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div>
+                                    <img src="../img/car2.jpg" class="wider">
+                                </div>
+                                <div>
+                                    <p class="info-text">
+                                        Mitsubishi Pajero
+                                        <span class="price-text">$132</span>
+                                    </p>
+                                    <p class="info-text">
+                                        <span class="state-text old">Old</span>
+                                    </p>
+                                    <p class="info-text">
+                                        <h3 class="gold-text">Sold</h3>
+                                    </p>
+                                </div>
+                                <div>
+                                    <button class="green-button-link" onclick="viewCar()">View</button>
+                                    <button class="yellow-button-link" onclick="displayBox('updateDiv2')">Update</button>
+                                    <button disabled class="violet-button-link">Mark Sold</button>
+                                </div>
+                                <div id="updateDiv2" class="update-div">
+                                    <input class="update" type="number" value="132" placeholder="New Price">
+                                    <button class="s-button" onclick="showAlert()">Update</button>
+                                    <button class="s-button" onclick="hideBox('updateDiv2')">Close</button>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div>
+                                    <img src="../img/car3.jpg" class="wider">
+                                </div>
+                                <div>
+                                    <p class="info-text">
+                                        Toyota Yaris
+                                        <span class="price-text">$109</span>
+                                    </p>
+                                    <p class="info-text">
+                                        <span class="state-text old">Old</span>
+                                    </p>
+                                    <p class="info-text">
+                                        <h3 class="gold-text">Sold</h3>
+                                    </p>
+                                </div>
+                                <div>
+                                    <button class="green-button-link" onclick="viewCar()">View</button>
+                                    <button class="yellow-button-link" onclick="displayBox('updateDiv3')">Update</button>
+                                    <button disabled class="violet-button-link">Mark Sold</button>
+                                </div>
+                                <div class="update-div" id="updateDiv3">
+                                    <input class="update" type="number" value="109" placeholder="New Price">
+                                    <button class="s-button" onclick="showAlert()">Update</button>
+                                    <button class="s-button" onclick="hideBox('updateDiv3')">Close</button>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div>
+                                    <img src="../img/car4.jpg" class="wider">
+                                </div>
+                                <div>
+                                    <p class="info-text">
+                                        Kia Picanto
+                                        <span class="price-text">$176</span>
+                                    </p>
+                                    <p class="info-text">
+                                        <span class="state-text new">New</span>
+                                    </p>
+                                    <p class="info-text">
+                                        <h3 class="green-text">Available</h3>
+                                    </p>
+                                </div>
+                                <div>
+                                    <button class="green-button-link" onclick="viewCar()">View</button>
+                                    <button class="yellow-button-link" onclick="displayBox('updateDiv4')">Update</button>
+                                    <button class="violet-button-link">Mark Sold</button>
+                                </div>
+                                <div class="update-div" id="updateDiv4">
+                                    <input class="update" type="number" value="176" placeholder="New Price">
+                                    <button class="s-button" onclick="showAlert()">Update</button>
+                                    <button class="s-button" onclick="hideBox('updateDiv4')">Close</button>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="paginators">
+                                <a href="#" class="paginator active">&lt;</a>
+                                <a href="#" class="paginator active">1</a>
+                                <a href="#" class="paginator">2</a>
+                                <a href="#" class="paginator">3</a>
+                                <a href="#" class="paginator">4</a>
+                                <a href="#" class="paginator">&gt;</a>
+                         </div>
+                    </section>
+            </div>
         </section>
         <section id="footer" class="footer">
             <div class="flex">
@@ -172,5 +198,6 @@
     </div>
     <script src="../js/sidebars.js"></script>
     <script src="../js/view.js"></script>
+    <script src="../js/update-ad.js"></script>
 </body>
 </html>
