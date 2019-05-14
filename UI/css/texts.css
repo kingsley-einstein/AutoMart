@@ -13,3 +13,18 @@
     color: white;
     font-size: 13px;
 }
+
+.state-text {
+    border-radius: 50%;
+    padding: 4px 2px;
+    color: white;
+    font-size: 13px;
+}
+
+.state-text.new {
+    background: darkgreen;
+}
+
+.state-text.old {
+    background: darkgoldenrod;
+}
