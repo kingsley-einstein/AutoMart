@@ -5,10 +5,111 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Auto Mart | My Purchase Orders</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/shared.css">
+    <link rel="stylesheet" href="../css/pagination.css">
+    <link rel="stylesheet" href="../css/texts.css">
+    <link rel="stylesheet" href="../css/links.css">
+    <link rel="stylesheet" href="../css/sidebar-mobile.css">
 </head>
 <body>
-    
+    <div class="main">
+        <div class="navbar">
+            <a href="#">
+                <h3>AutoMart</h3>
+            </a>
+            <div class="nav-menu">
+                <a href="dashboard.html">Main</a>
+                <a href="order.html">Order</a>
+                <a href="my-ads.html">My ADs</a>
+                <a href="car-sale.html">Post New AD</a>
+                <a href="requests.html">Requests <span id="notif" class="notif-text">1</span></a>
+                <a href="purchase-orders.html">Purchase Orders</a>
+                <a href="#">Admin <img src="../svg/admin.svg" class="img-sm-20"></a>
+                <a href="#" class="black-button-link">Logout</a>
+            </div>
+            <div class="nav-mobile-menu">
+                <div class="hamburger" id="hamburger">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-mobile" id="sidebar-mobile">
+            <ul>
+                <li><a href="dashboard.html">Main</a></li>
+                <li><a href="order.html">Order</a></li>
+                <li><a href="my-ads.html">My ADs</a></li>
+                <li><a href="car-sale.html">Post New AD</a></li>
+                <li><a href="requests.html">Requests <span id="notif" class="notif-text">1</span></a></li>
+                <li><a href="purchase-orders.html">Purchase Orders</a></li>
+                <li><a href="#">Admin <img src="../svg/admin.svg" class="img-sm-20"></a></li>
+            </ul>
+        </div>
+        <section id="flex" class="flex rd-padding">
+            <div class="center col">
+                <div class="alert-box" id="alert-box"></div>
+                <div class="whole-section">
+                    <div class="flex rd-padding">
+                        <div class="card">
+                            <div>
+                                <img src="../img/car3.jpg" class="wider">
+                            </div>
+                            <div>
+                                <p class="info-text">
+                                    Mitsubishi Pajero
+                                    <span class="price-text">$150</span>
+                                </p>
+                                <p class="info-text">
+                                    <span class="state-text new">New</span>
+                                </p>
+                                <p class="info-text">
+                                    <span class="title-text">Owner:</span>
+                                    <h5>Taralyn Cosgrove</h5>
+                                </p>
+                                <p class="info-text">
+                                    <span class="title-text">Phone NO:</span>
+                                    <h5>+4562783883773</h5>
+                                </p>
+                            </div>
+                            <div>
+                                <button class="red-button-link" onclick="markFraud()">Flag As Fraud</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="paginators">
+                        <a href="#" class="paginator active">&lt;</a>
+                        <a href="#" class="paginator active">1</a>
+                        <a href="#" class="paginator">2</a>
+                        <a href="#" class="paginator">&gt;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="footer" class="footer">
+            <div class="flex">
+                <div class="explain">
+                    <p class="info-text">
+                        <h1>Important Notice!</h1>
+                    </p>
+                    <p class="info-text">
+                        AutoMart is made with love by Kingsley Victor for the Andela developer challenge.
+                    </p>
+                    <p class="info-text">
+                        This app should be used with discretion as AutoMart does not guarantee non-fraudulent deals.
+                    </p>
+                </div>
+            </div>
+            <div class="s-media">
+                <img src="../svg/facebook-logo-in-circular-button-outlined-social-symbol.svg">
+                <img src="../svg/social-twitter-circular-button.svg">
+                <img src="../svg/google-plus-circular-button.svg">
+                <img src="../svg/instagram.svg">
+            </div>
+        </section>
+    </div>
+    <script src="../js/sidebars.js"></script>
+    <script src="../js/view.js"></script>
 </body>
 </html>
