@@ -1,0 +1,7 @@
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: e87d5d002d781c9304280be010e22b88aba84cb1
+  keep_history: true
+  on:
+    branch: travis-ui
