@@ -24,6 +24,13 @@
     margin: 8px;
 }
 
+.card input.update {
+    border: 1px solid #dcdcdc;
+    padding: 4px 8px;
+    border-radius: 5px;
+    width: 100px;
+}
+
 @media screen and (max-width: 719px) {
     .card {
         width: 80%;
