@@ -5,3 +5,7 @@ const viewCar = () => {
 const markFraud = () => {
     location.assign("fraud.html");
 }
+
+const placeOrder = () => {
+    location.assign("purchase.html");
+}
