@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="../css/forms.css">
         <link rel="stylesheet" href="../css/links.css">
         <link rel="stylesheet" href="../css/sidebar-mobile.css">
+        <link rel="stylesheet" href="../css/alert.css">
         <title>Auto Mart | Sign Up</title>
     </head>
     <body>
@@ -39,10 +40,11 @@
                         </ul>
                     </div>
             <div class="flex">
-                <div class="center">
+                <div class="center col">
+                    <div id="alert" class="alert-box"></div>
                    <div class="form-group">
                        <h3>Register</h3>
-                       <form>
+                       <form id="sign_up_form">
                            <input class="input" type="email" placeholder="Email">
                            <input class="input" type="text" placeholder="First Name">
                            <input class="input" type="text" placeholder="Last Name">
@@ -79,5 +81,6 @@
             </section>
         </div>
         <script src="../js/sidebars.js"></script>
+        <script src="../js/signup.js"></script>
     </body>
 </html>
