@@ -1,0 +1,28 @@
+{
+  "name": "automart",
+  "version": "1.0.0",
+  "description": "[![Build Status](https://travis-ci.org/travis-ci/AutoMart.svg?branch=travis-ui)](https://travis-ci.org/travis-ci/AutoMart) \\\r The AutoMart app UI is designed using HTML and CSS while dynamic features are implemented in JavaScript\r The UI for the app can be found [Here](https://kingsley-einstein.github.io/AutoMart/UI/views)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node Server/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kingsley-einstein/AutoMart.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kingsley-einstein/AutoMart/issues"
+  },
+  "homepage": "https://github.com/kingsley-einstein/AutoMart#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "multer": "^1.4.1",
+    "path": "^0.12.7"
+  }
+}
