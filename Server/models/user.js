@@ -13,7 +13,7 @@ export const usersTable = {
 
 	},
 	getUserById: function(id) {
-		let user = {};
+		let user = null;
 		this.users.forEach(value => {
 			if (value.id === id) {
 				user = value;
@@ -22,10 +22,19 @@ export const usersTable = {
 
 		return user;
 	},
+	getUserByEmail: function(email) {
+		let user = null;
+		this.users.forEach(value => {
+			if (value.email === email)
+				user = value;
+		});
+
+		return user;
+	},
 	getAllUsers: function() {
 		return this.users;
 	},
-	update: function(id, { email, first_name, last_name, password, address, is_admin}) {
+	update: function(id, { email, first_name, last_name, password, address, is_admin, token}) {
 		let user = {};
 		this.users.forEach(value => {
 			if (value.id === id) {
@@ -38,10 +47,11 @@ export const usersTable = {
 		user.password = password ? password : user.password;
 		user.address = address ? address : user.address;
 		user.is_admin = is_admin !== null ? is_admin : user.is_admin;
+		user.token = token ? token : user.token;
 
-		this.users.forEach(value => {
+		this.users.forEach((value, index) => {
 			if (value.id === user.id) {
-				this.users.splice(this.users.indexOf(value), 1, user);
+				this.users.splice(index, 1, user);
 			}
 		});
 
@@ -49,9 +59,9 @@ export const usersTable = {
 	},
 	delete: function(id) {
 		if (!id) this.users.shift()
-		else this.users.forEach(value => {
+		else this.users.forEach((value, index) => {
 			if (value.id === id) {
-				this.users.splice(this.users.indexOf(value), 1);
+				this.users.splice(index, 1);
 			}
 		});
 		return true;
