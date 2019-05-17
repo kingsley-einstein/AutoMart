@@ -1,9 +1,9 @@
-import router from '../routes';
 import { json } from 'body-parser';
+import router from '../routes';
 
-export class Config {
-    set(app) {
-        app.use(json());
-        app.use("/api/v1", router);
-    }
+export default class Config {
+  configure(app) {
+    app.use(json());
+    app.use('/api/v1', router);
+  }
 }

@@ -1,49 +1,56 @@
 let id = 0;
 
 export const orderTable = {
-    orders: [],
-    create(obj) {
-        id++;
-        obj.id = id;
-        this.orders.push(obj);
+  orders: [],
+  create(obj) {
+    id++;
+    const item = obj;
+    item.id = id;
+    this.orders.push(item);
 
-        return obj;
-    },
-    getOrders() {
-        return this.orders;
-    },
-    getOrderById(id) {
-        let order = {}
-        this.orders.forEach(value => {
-            if (value.id === id)
-                order = value;
-        });
+    return item;
+  },
+  getOrders() {
+    return this.orders;
+  },
+  getOrderById(order_id) {
+    let order = {};
+    this.orders.forEach((value) => {
+      if (value.id === order_id) {
+        order = value;
+      }
+    });
 
-        return order;
-    },
-    update(id, { amount, status }) {
-        let order = {};
-        this.orders.forEach(value => {
-            if (value.id === id)
-                order = value;
-        });
-        order.amount = amount ? amount : order.amount;
-        order.status = status ? status : order.status;
+    return order;
+  },
+  update(order_id, { amount, status }) {
+    let order = {};
+    this.orders.forEach((value) => {
+      if (value.id === order_id) {
+        order = value;
+      }
+    });
+    order.amount = amount || order.amount;
+    order.status = status || order.status;
 
-        this.orders.forEach((value, index) => {
-            if (value.id === order.id)
-                this.orders.splice(index, 1, order);
-        });
+    this.orders.forEach((value, index) => {
+      if (value.id === order.id) {
+        this.orders.splice(index, 1, order);
+      }
+    });
 
-        return order;
-    },
-    delete(id) {
-        if (!id) this.orders.shift()
-        else this.orders.forEach((value, index) => {
-            if (value.id === id) 
-                this.orders.splice(index, 1);
-        });
-
-        return true;
+    return order;
+  },
+  delete(order_id) {
+    if (!order_id) this.orders.shift();
+    else {
+      this.orders.forEach((value, index) => {
+        if (value.id === order_id) {
+          this.orders.splice(index, 1);
+        }
+      });
     }
-}
+
+    return true;
+  },
+};
