@@ -2,17 +2,17 @@ let id = 0;
 
 export const orderTable = {
     orders: [],
-    create: function(obj) {
+    create(obj) {
         id++;
         obj.id = id;
         this.orders.push(obj);
 
         return obj;
     },
-    getOrders: function() {
+    getOrders() {
         return this.orders;
     },
-    getOrderById: function(id) {
+    getOrderById(id) {
         let order = {}
         this.orders.forEach(value => {
             if (value.id === id)
@@ -21,7 +21,7 @@ export const orderTable = {
 
         return order;
     },
-    update: function(id, { amount, status }) {
+    update(id, { amount, status }) {
         let order = {};
         this.orders.forEach(value => {
             if (value.id === id)
@@ -37,7 +37,7 @@ export const orderTable = {
 
         return order;
     },
-    delete: function(id) {
+    delete(id) {
         if (!id) this.orders.shift()
         else this.orders.forEach((value, index) => {
             if (value.id === id) 

@@ -2,17 +2,17 @@ let id = 0;
 
 export const usersTable = {
 	users: [],
-	create: function(obj) {
+	create(obj) {
 		id++;
 		obj.id = id;
 		this.users.push(obj);
 
 		return obj;
 	},
-	getByToken: function(token) {
+	getByToken(token) {
 
 	},
-	getUserById: function(id) {
+	getUserById(id) {
 		let user = null;
 		this.users.forEach(value => {
 			if (value.id === id) {
@@ -22,7 +22,7 @@ export const usersTable = {
 
 		return user;
 	},
-	getUserByEmail: function(email) {
+	getUserByEmail(email) {
 		let user = null;
 		this.users.forEach(value => {
 			if (value.email === email)
@@ -31,10 +31,10 @@ export const usersTable = {
 
 		return user;
 	},
-	getAllUsers: function() {
+	getAllUsers() {
 		return this.users;
 	},
-	update: function(id, { email, first_name, last_name, password, address, is_admin, token}) {
+	update(id, { email, first_name, last_name, password, address, is_admin, token}) {
 		let user = {};
 		this.users.forEach(value => {
 			if (value.id === id) {
@@ -57,7 +57,7 @@ export const usersTable = {
 
 		return user;
 	},
-	delete: function(id) {
+	delete(id) {
 		if (!id) this.users.shift()
 		else this.users.forEach((value, index) => {
 			if (value.id === id) {

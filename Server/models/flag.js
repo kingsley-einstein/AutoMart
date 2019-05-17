@@ -2,14 +2,14 @@ let id = 0;
 
 export const flagsTable = {
     flags: [],
-    create: function(obj) {
+    create(obj) {
         id++;
         obj.id = id;
         this.flags.push(obj);
 
         return obj;
     },
-    getFlagById: function(id) {
+    getFlagById(id) {
         let flag = {};
         this.flags.forEach(value => {
             if (value.id === id)
@@ -18,7 +18,7 @@ export const flagsTable = {
 
         return flag;
     },
-    getFlags: function() {
+    getFlags() {
         return this.flags;
     }
 }

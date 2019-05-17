@@ -2,7 +2,7 @@ let id = 0;
 
 export const carsTable = {
     cars: [],
-    create: function(obj) {
+    create(obj) {
         id++;
         obj.id = id;
         obj.created_on = new Date();
@@ -10,10 +10,10 @@ export const carsTable = {
 
         return obj;
     },
-    getCars: function() {
+    getCars() {
         return this.cars;
     },
-    getCarById: function(id) {
+    getCarById(id) {
         let car = {}
         this.cars.forEach(value => {
             if (value.id == id) 
@@ -22,11 +22,11 @@ export const carsTable = {
 
         return car;
     },
-    getCarsByStatus: function(status) {
+    getCarsByStatus(status) {
         let arr = this.cars.filter(value => value.status === status);
         return arr;
     },
-    update: function(id, { status, price }) {
+    update(id, { status, price }) {
         let car = {};
         this.cars.forEach(value => {
             if (value.id == id) 
@@ -42,7 +42,7 @@ export const carsTable = {
 
         return car;
     },
-    delete: function(id) {
+    delete(id) {
         if(!id) this.cars.shift()
         else this.cars.forEach((value, index) => {
             if (value.id === id)
