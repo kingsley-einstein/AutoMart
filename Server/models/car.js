@@ -5,7 +5,10 @@ export const carsTable = {
     create: function(obj) {
         id++;
         obj.id = id;
+        obj.created_on = new Date();
         this.cars.push(obj);
+
+        return obj;
     },
     getCars: function() {
         return this.cars;
@@ -13,16 +16,20 @@ export const carsTable = {
     getCarById: function(id) {
         let car = {}
         this.cars.forEach(value => {
-            if (value.id === id) 
+            if (value.id == id) 
                 car = value;
         });
 
         return car;
     },
-    update: function(id, { status, price, }) {
+    getCarsByStatus: function(status) {
+        let arr = this.cars.filter(value => value.status === status);
+        return arr;
+    },
+    update: function(id, { status, price }) {
         let car = {};
         this.cars.forEach(value => {
-            if (value.id === id) 
+            if (value.id == id) 
                 car = value;
         });
         car.status = status ? status : car.status;
@@ -32,6 +39,8 @@ export const carsTable = {
             if (value.id === car.id) 
                 this.cars.splice(index, 1, car);
         });
+
+        return car;
     },
     delete: function(id) {
         if(!id) this.cars.shift()

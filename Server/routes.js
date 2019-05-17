@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { UserController } from './controllers';
+import { UserController, CarController } from './controllers';
 
 const router = Router();
 
 const userController = new UserController();
+const carController = new CarController();
 
 router.get("/", (req, res) => {
     res.status(200).json({
@@ -11,7 +12,15 @@ router.get("/", (req, res) => {
     });
 });
 
+//User specific routes
 router.post("/auth/signup", userController.create);
 router.post("/auth/signin", userController.login);
+
+//Car specific routes
+router.post("/car", carController.create);
+router.patch("/car/:car_id/status", carController.markSold);
+router.patch("/car/:car_id/price", carController.updatePrice);
+router.get("/car/:car_id", carController.getCar);
+router.get("/car", carController.getCarsByStatus);
 
 export default router;

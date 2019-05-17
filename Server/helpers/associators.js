@@ -5,7 +5,7 @@ export const associations = {
         carsTable.getCars().forEach(value => {
             if (value.id === car.id) {
                 car.user = usersTable.getAllUsers()
-                .find((item) => item.id === car.owner);
+                .find((item) => item.id == car.owner);
             }
         });
     },
@@ -13,7 +13,7 @@ export const associations = {
         orderTable.getOrders().forEach(value => {
             if (value.id === order.id) {
                 order.user = usersTable.getAllUsers()
-                .find((item) => item.id === order.buyer);
+                .find((item) => item.id == order.buyer);
             }
         });
     },
@@ -21,7 +21,7 @@ export const associations = {
         orderTable.getOrders().forEach(value => {
             if (value.id === order.id) {
                 order.car = carsTable.getCars()
-                .find((item) => item.id === order.car_id);
+                .find((item) => item.id == order.car_id);
             }
         })
     },
@@ -29,7 +29,7 @@ export const associations = {
         flagsTable.getFlags().forEach(value => {
             if (value.id === flag.id) {
                 flag.car = carsTable.getCars()
-                .find((item) => item.id === flag.car_id);
+                .find((item) => item.id == flag.car_id);
             }
         })
     }
