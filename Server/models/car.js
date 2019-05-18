@@ -34,6 +34,20 @@ export const carsTable = {
     );
     return arr;
   },
+  getCarsByStatusAndState(status, state) {
+    const arr = this.cars.filter(value => value.status === status && value.state === state);
+    return arr;
+  },
+  getCarsByStatusAndManufacturer(status, manufacturer) {
+    const arr = this.cars.filter(
+      value => value.status === status && value.manufacturer === manufacturer
+    );
+    return arr;
+  },
+  getCarsByBodyType(body_type) {
+    const arr = this.cars.filter(value => value.body_type === body_type);
+    return arr;
+  },
   update(car_id, { status, price }) {
     let car = {};
     this.cars.forEach((value) => {

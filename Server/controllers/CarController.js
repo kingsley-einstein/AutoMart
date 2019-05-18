@@ -83,14 +83,37 @@ export class CarController {
 
   async getCarsByStatus(req, res) {
     try {
-      const { status, min_price, max_price } = req.query;
+      const {
+        status, min_price, max_price, state, manufacturer
+      } = req.query;
       let cars = null;
       cars = min_price && max_price
         ? await carsTable.getCarsByStatusAndPriceRange(status, min_price, max_price)
-        : await carsTable.getCarsByStatus(status);
+        : state
+          ? await carsTable.getCarsByStatusAndState(status, state)
+          : manufacturer
+            ? await carsTable.getCarsByStatusAndManufacturer(status, manufacturer)
+            : await carsTable.getCarsByStatus(status);
       cars.forEach(async (car) => {
         await associations.car_user(car);
       });
+
+      res.status(200).json({
+        status: 200,
+        data: cars
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
+
+  async getCarsByBodyType(req, res) {
+    try {
+      const { body_type } = req.query;
+      const cars = await carsTable.getCarsByBodyType(body_type);
 
       res.status(200).json({
         status: 200,
@@ -110,8 +133,38 @@ export class CarController {
       const isDeleted = await carsTable.delete(car_id);
       res.status(200).json({
         status: 200,
-        isDeleted
+        data: isDeleted
       });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
+
+  async getCars(req, res) {
+    try {
+      const cars = await carsTable.getCars();
+      res.status(200).json({
+        status: 200,
+        data: cars
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
+
+  async getCarsByStatusOrBodyType(req, res) {
+    try {
+      const { status, body_type } = req.query;
+      if (status) this.getCarsByStatus(req, res);
+      else if (body_type) {
+        this.getCarsByBodyType(body_type);
+      }
     } catch (err) {
       res.status(500).json({
         status: 500,

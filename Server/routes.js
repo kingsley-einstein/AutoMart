@@ -21,7 +21,7 @@ router.post('/car', carController.create);
 router.patch('/car/:car_id/status', carController.markSold);
 router.patch('/car/:car_id/price', carController.updatePrice);
 router.get('/car/:car_id', carController.getCar);
-router.get('/car', carController.getCarsByStatus);
+router.get('/car', carController.getCarsByStatusOrBodyType);
 router.delete('/car/:car_id', carController.deleteCar);
 
 export default router;
