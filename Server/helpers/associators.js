@@ -1,5 +1,5 @@
 import {
-  flagsTable, usersTable, orderTable, carsTable,
+  flagsTable, usersTable, orderTable, carsTable
 } from '../models';
 
 export const associations = {
@@ -30,5 +30,5 @@ export const associations = {
         flag.car = carsTable.getCars().find(item => item.id == flag.car_id);
       }
     });
-  },
+  }
 };

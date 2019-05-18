@@ -8,7 +8,7 @@ const carController = new CarController();
 
 router.get('/', (req, res) => {
   res.status(200).json({
-    message: 'You have reached the AutoMart API',
+    message: 'You have reached the AutoMart API'
   });
 });
 
@@ -22,5 +22,6 @@ router.patch('/car/:car_id/status', carController.markSold);
 router.patch('/car/:car_id/price', carController.updatePrice);
 router.get('/car/:car_id', carController.getCar);
 router.get('/car', carController.getCarsByStatus);
+router.delete('/car/:car_id', carController.deleteCar);
 
 export default router;

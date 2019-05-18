@@ -28,6 +28,12 @@ export const carsTable = {
     const arr = this.cars.filter(value => value.status === status);
     return arr;
   },
+  getCarsByStatusAndPriceRange(status, min_price, max_price) {
+    const arr = this.cars.filter(
+      value => value.status === status && value.price >= min_price && value.price <= max_price
+    );
+    return arr;
+  },
   update(car_id, { status, price }) {
     let car = {};
     this.cars.forEach((value) => {
@@ -57,5 +63,5 @@ export const carsTable = {
     }
 
     return true;
-  },
+  }
 };

@@ -35,7 +35,7 @@ export const usersTable = {
     return this.users;
   },
   update(user_id, {
-    email, first_name, last_name, password, address, is_admin, token,
+    email, first_name, last_name, password, address, is_admin, token
   }) {
     let user = {};
     this.users.forEach((value) => {
@@ -69,5 +69,5 @@ export const usersTable = {
       });
     }
     return true;
-  },
+  }
 };

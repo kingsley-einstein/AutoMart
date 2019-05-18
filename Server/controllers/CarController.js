@@ -83,8 +83,11 @@ export class CarController {
 
   async getCarsByStatus(req, res) {
     try {
-      const { status } = req.query;
-      const cars = await carsTable.getCarsByStatus(status);
+      const { status, min_price, max_price } = req.query;
+      let cars = null;
+      cars = min_price && max_price
+        ? await carsTable.getCarsByStatusAndPriceRange(status, min_price, max_price)
+        : await carsTable.getCarsByStatus(status);
       cars.forEach(async (car) => {
         await associations.car_user(car);
       });
@@ -92,6 +95,22 @@ export class CarController {
       res.status(200).json({
         status: 200,
         data: cars
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
+
+  async deleteCar(req, res) {
+    try {
+      const { car_id } = req.params;
+      const isDeleted = await carsTable.delete(car_id);
+      res.status(200).json({
+        status: 200,
+        isDeleted
       });
     } catch (err) {
       res.status(500).json({

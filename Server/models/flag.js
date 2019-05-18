@@ -22,5 +22,5 @@ export const flagsTable = {
   },
   getFlags() {
     return this.flags;
-  },
+  }
 };
