@@ -4,7 +4,9 @@
   "description": "[![Build Status](https://travis-ci.org/travis-ci/AutoMart.svg?branch=travis-ui)](https://travis-ci.org/travis-ci/AutoMart) \\\r The AutoMart app UI is designed using HTML and CSS while dynamic features are implemented in JavaScript\r The UI for the app can be found [Here](https://kingsley-einstein.github.io/AutoMart/UI/views)",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node Server/index"
+    "start": "babel-node Server/index",
+    "lint": "eslint Server/**/*.js --fix",
+    "format": "prettier-eslint Server/**/*.js --write"
   },
   "repository": {
     "type": "git",
@@ -19,9 +21,22 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.1.4",
     "multer": "^1.4.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-promise": "^4.1.1",
+    "prettier-eslint-cli": "^4.7.1"
   }
 }

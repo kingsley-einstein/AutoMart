@@ -1,0 +1,18 @@
+{
+    "env": {
+        "node": true
+    },
+    "extends": "airbnb-base",
+    "plugins": ["promise"],
+    "rules": {
+        "no-console": "off",
+        "prefer-destructuring": "warn",
+        "class-methods-use-this": "off",
+        "comma-dangle": "off",
+        "camelcase": "off",
+        "import/prefer-default-export": "off",
+        "no-plusplus": "off",
+        "eqeqeq": "off",
+        "no-param-reassign": "off"
+    }
+}
