@@ -1,7 +1,7 @@
 import { orderTable } from '../models';
 import { associations } from '../helpers';
 
-export default class OrderController {
+export class OrderController {
   async create(req, res) {
     try {
       const { body } = req;
@@ -25,7 +25,35 @@ export default class OrderController {
     try {
       const { order_id } = req.params;
       const { price } = req.query || req.body;
-      
-    } catch(err) {}
+      const order = await orderTable.update(order_id, { price });
+
+      res.status(200).json({
+        status: 200,
+        data: order
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
+
+  async updateStatus(req, res) {
+    try {
+      const { order_id } = req.params;
+      const { status } = req.query || req.body;
+      const order = await orderTable.update(order_id, { status });
+
+      res.status(200).json({
+        status: 200,
+        data: order
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
   }
 }
