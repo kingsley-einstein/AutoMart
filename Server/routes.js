@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import { UserController, CarController } from './controllers';
+import { upload } from './helpers';
 
 const router = Router();
+const file = upload();
 
 const userController = new UserController();
 const carController = new CarController();
@@ -17,7 +19,7 @@ router.post('/auth/signup', userController.create);
 router.post('/auth/signin', userController.login);
 
 // Car specific routes
-router.post('/car', carController.create);
+router.post('/car', file.single('picture'), carController.create);
 router.patch('/car/:car_id/status', carController.markSold);
 router.patch('/car/:car_id/price', carController.updatePrice);
 router.get('/car/:car_id', carController.getCar);

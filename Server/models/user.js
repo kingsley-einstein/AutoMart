@@ -3,16 +3,18 @@ import { hashSync, genSaltSync } from 'bcryptjs';
 let id = 1;
 
 export const usersTable = {
-  users: [{
-    id,
-    email: 'javaprodigy56@gmail.com',
-    first_name: 'Kingsley',
-    last_name: 'Victor',
-    password: hashSync('password', genSaltSync(10)),
-    address: '5, Kao Alabi Crescent, Owutu, Agric, Ikorodu, Lagos',
-    is_admin: true,
-    phone_number: '+2349090456789'
-  }],
+  users: [
+    {
+      id,
+      email: 'javaprodigy56@gmail.com',
+      first_name: 'Kingsley',
+      last_name: 'Victor',
+      password: hashSync('password', genSaltSync(10)),
+      address: '5, Kao Alabi Crescent, Owutu, Agric, Ikorodu, Lagos',
+      is_admin: true,
+      phone_number: '+2349090456789'
+    }
+  ],
   create(obj) {
     id++;
     const item = obj;
@@ -58,9 +60,12 @@ export const usersTable = {
    * @param {number} user_id
    * @param {*} ctx
    */
-  update(user_id, {
-    email, first_name, last_name, password, address, is_admin, token, phone_number
-  }) {
+  update(
+    user_id,
+    {
+      email, first_name, last_name, password, address, is_admin, token, phone_number
+    }
+  ) {
     let user = {};
     this.users.forEach((value) => {
       if (value.id == user_id) {

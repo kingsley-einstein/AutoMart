@@ -1,17 +1,19 @@
 let id = 1;
 
 export const carsTable = {
-  cars: [{
-    id,
-    owner: 1,
-    created_on: new Date(),
-    state: 'new',
-    status: 'available',
-    price: 145.0,
-    manufacturer: 'Toyota',
-    model: 'Camry',
-    body_type: 'car'
-  }],
+  cars: [
+    {
+      id,
+      owner: 1,
+      created_on: new Date(),
+      state: 'new',
+      status: 'available',
+      price: 145.0,
+      manufacturer: 'Toyota',
+      model: 'Camry',
+      body_type: 'car'
+    }
+  ],
   create(obj) {
     id++;
     const item = obj;

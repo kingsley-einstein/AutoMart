@@ -1,13 +1,15 @@
 let id = 1;
 
 export const orderTable = {
-  orders: [{
-    id,
-    buyer: 1,
-    car_id: 1,
-    amount: 415.89,
-    status: 'pending'
-  }],
+  orders: [
+    {
+      id,
+      buyer: 1,
+      car_id: 1,
+      amount: 415.89,
+      status: 'pending'
+    }
+  ],
   create(obj) {
     id++;
     const item = obj;

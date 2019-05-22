@@ -7,6 +7,7 @@ export class CarController {
       const { body } = req;
       body.owner = req.query.owner;
       body.status = 'Available';
+      body.img_url = req.file.url;
       const car = await carsTable.create(body);
       await associations.car_user(car);
 
