@@ -2,6 +2,13 @@ import { carsTable } from '../models';
 import { associations } from '../helpers';
 
 export class CarController {
+  constructor() {
+    // this.getCarsByStatus.bind(this);
+    // this.getCarsByBodyType.bind(this);
+    // console.log(this);
+    this.that = this;
+  }
+
   async create(req, res) {
     try {
       const { body } = req;
@@ -65,7 +72,11 @@ export class CarController {
   }
 
   async getCar(req, res) {
+    // console.log(this);
+    // const self = this;
+    // console.log(self);
     try {
+      // console.log(this);
       const { car_id } = req.params;
       const car = await carsTable.getCarById(car_id);
       await associations.car_user(car);
