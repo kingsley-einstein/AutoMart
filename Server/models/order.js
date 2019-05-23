@@ -65,6 +65,6 @@ export const orderTable = {
       });
     }
 
-    return true;
+    return 'Order deleted';
   }
 };

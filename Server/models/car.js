@@ -125,6 +125,6 @@ export const carsTable = {
       });
     }
 
-    return true;
+    return 'Car Ad successfully deleted';
   }
 };

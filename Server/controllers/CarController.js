@@ -131,10 +131,10 @@ export class CarController {
   async deleteCar(req, res) {
     try {
       const { car_id } = req.params;
-      const isDeleted = await carsTable.delete(car_id);
+      const deleted = await carsTable.delete(car_id);
       res.status(200).json({
         status: 200,
-        data: isDeleted
+        data: deleted
       });
     } catch (err) {
       res.status(500).json({
@@ -164,7 +164,7 @@ export class CarController {
       const { status, body_type } = req.query;
       if (status) this.getCarsByStatus(req, res);
       else if (body_type) {
-        this.getCarsByBodyType(body_type);
+        this.getCarsByBodyType(req, res);
       }
     } catch (err) {
       res.status(500).json({

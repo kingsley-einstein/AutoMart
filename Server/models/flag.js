@@ -22,5 +22,16 @@ export const flagsTable = {
   },
   getFlags() {
     return this.flags;
+  },
+  delete(flag_id) {
+    if (!flag_id) this.flags.shift();
+    else {
+      this.flags.forEach((value, index) => {
+        if (value.id == flag_id) {
+          this.flags.splice(index, 1);
+        }
+      });
+    }
+    return 'Item successfully deleted';
   }
 };

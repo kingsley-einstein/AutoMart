@@ -98,6 +98,6 @@ export const usersTable = {
         }
       });
     }
-    return true;
+    return 'User deleted';
   }
 };

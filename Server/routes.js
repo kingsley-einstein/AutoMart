@@ -1,5 +1,7 @@
 import { Router } from 'express';
-import { UserController, CarController } from './controllers';
+import {
+  UserController, CarController, OrderController, FlagController
+} from './controllers';
 import { upload } from './helpers';
 
 const router = Router();
@@ -7,6 +9,8 @@ const file = upload();
 
 const userController = new UserController();
 const carController = new CarController();
+const orderController = new OrderController();
+const flagController = new FlagController();
 
 router.get('/', (req, res) => {
   res.status(200).json({
@@ -25,5 +29,16 @@ router.patch('/car/:car_id/price', carController.updatePrice);
 router.get('/car/:car_id', carController.getCar);
 router.get('/car', carController.getCarsByStatusOrBodyType);
 router.delete('/car/:car_id', carController.deleteCar);
+
+// Order specific routes
+router.post('/order', orderController.create);
+router.patch('/order/:order_id/price', orderController.updatePrice);
+router.patch('/order/:order_id/status', orderController.updateStatus);
+
+// Flag specific routes
+router.post('/flag', flagController.create);
+router.get('/flag', flagController.getAllFlags);
+router.get('/flag/:flag_id', flagController.getFlag);
+router.delete('/flag/:flag_id', flagController.deleteFlag);
 
 export default router;
