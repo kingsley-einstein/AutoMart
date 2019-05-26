@@ -21,6 +21,8 @@ router.get('/', (req, res) => {
 // User specific routes
 router.post('/auth/signup', userController.create);
 router.post('/auth/signin', userController.login);
+router.get('/users', userController.getAllUsers);
+router.get('/users/:user_id', userController.getUser);
 
 // Car specific routes
 router.post('/car', file.single('picture'), carController.create);
