@@ -13,6 +13,9 @@
         "import/prefer-default-export": "off",
         "no-plusplus": "off",
         "eqeqeq": "off",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "no-nested-ternary": "off",
+        "import/no-extraneous-dependencies": "off",
+        "linebreak-style": "off"
     }
 }

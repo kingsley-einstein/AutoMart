@@ -1,7 +1,25 @@
-let id = 0;
+import { hashSync, genSaltSync } from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { authObj } from '../auth/passport';
+
+const { options } = authObj;
+
+let id = 1;
 
 export const usersTable = {
-  users: [],
+  users: [
+    {
+      id,
+      email: 'javaprodigy56@gmail.com',
+      first_name: 'Kingsley',
+      last_name: 'Victor',
+      password: hashSync('password', genSaltSync(10)),
+      address: '5, Kao Alabi Crescent, Owutu, Agric, Ikorodu, Lagos',
+      is_admin: true,
+      phone_number: '+2349090456789',
+      token: jwt.sign({ email: 'javaprodigy56@gmail.com' }, options.secretOrKey)
+    }
+  ],
   create(obj) {
     id++;
     const item = obj;
@@ -11,16 +29,24 @@ export const usersTable = {
     return item;
   },
   // getByToken(token) {},
+  /**
+   *
+   * @param {number} user_id
+   */
   getUserById(user_id) {
     let user = null;
     this.users.forEach((value) => {
-      if (value.id === user_id) {
+      if (value.id == user_id) {
         user = value;
       }
     });
 
     return user;
   },
+  /**
+   *
+   * @param {string} email
+   */
   getUserByEmail(email) {
     let user = null;
     this.users.forEach((value) => {
@@ -34,12 +60,20 @@ export const usersTable = {
   getAllUsers() {
     return this.users;
   },
-  update(user_id, {
-    email, first_name, last_name, password, address, is_admin, token,
-  }) {
+  /**
+   *
+   * @param {number} user_id
+   * @param {*} ctx
+   */
+  update(
+    user_id,
+    {
+      email, first_name, last_name, password, address, is_admin, token, phone_number
+    }
+  ) {
     let user = {};
     this.users.forEach((value) => {
-      if (value.id === user_id) {
+      if (value.id == user_id) {
         user = value;
       }
     });
@@ -50,6 +84,7 @@ export const usersTable = {
     user.address = address || user.address;
     user.is_admin = is_admin || user.is_admin;
     user.token = token || user.token;
+    user.phone_number = phone_number || user.phone_number;
 
     this.users.forEach((value, index) => {
       if (value.id === user.id) {
@@ -68,6 +103,6 @@ export const usersTable = {
         }
       });
     }
-    return true;
-  },
+    return 'User deleted';
+  }
 };
