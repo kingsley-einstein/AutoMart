@@ -1,27 +1,27 @@
 /**
- * 
- * @param {string} id 
+ *
+ * @param {string} id
  */
 const displayBox = (id) => {
-    let box = document.getElementById(id);
-    box.classList.add("show");
-}
+  const box = document.getElementById(id);
+  box.classList.add('show');
+};
 
 /**
- * 
- * @param {string} id 
+ *
+ * @param {string} id
  */
 const hideBox = (id) => {
-    let box = document.getElementById(id);
-    box.classList.remove("show");
-}
+  const box = document.getElementById(id);
+  box.classList.remove('show');
+};
 
 const showAlert = () => {
-    let alertBox = document.getElementById("alert-box");
-    alertBox.textContent = "Updated item price";
-    alertBox.classList.add("show", "success");
-    setTimeout(() => {
-        alertBox.textContent = "";
-        alertBox.classList.remove("show", "success");
-    }, 2000);
-}
+  const alertBox = document.getElementById('alert-box');
+  alertBox.textContent = 'Updated item price';
+  alertBox.classList.add('show', 'success');
+  setTimeout(() => {
+    alertBox.textContent = '';
+    alertBox.classList.remove('show', 'success');
+  }, 2000);
+};
