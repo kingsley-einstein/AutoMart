@@ -12,40 +12,44 @@ const { options } = authObj;
 describe('USER ROUTES TEST', () => {
   describe('GET', () => {
     it('should send an array of data', (done) => {
-      chai.request(app)
+      chai
+        .request(app)
         .get('/api/v1/users')
         .end((err, res) => {
           const { data } = res.body;
           chai.assert.isArray(data);
-          done();
+          done(err);
         });
     });
     it('should have a status of 200', (done) => {
-      chai.request(app)
+      chai
+        .request(app)
         .get('/api/v1/users')
         .end((err, res) => {
           res.should.have.status(200);
-          done();
+          done(err);
         });
     });
     it('should get a user with specific id', (done) => {
       const id = 1;
-      chai.request(app)
+      chai
+        .request(app)
         .get(`/api/v1/users/${id}`)
         .end((err, res) => {
           const { data } = res.body;
           chai.assert.isNotNull(data);
-          done();
+          done(err);
         });
     });
     it('should check if specific keys exist on user object', (done) => {
       const id = 1;
-      chai.request(app)
+      chai
+        .request(app)
         .get(`/api/v1/users/${id}`)
         .end((err, res) => {
           const { data } = res.body;
           chai.assert.hasAnyKeys(data, ['token', 'email', 'password', 'id', 'is_admin']);
-          done();
+          done(err);
         });
     });
   });
@@ -61,13 +65,14 @@ describe('USER ROUTES TEST', () => {
         password: hashSync('password', genSaltSync(10)),
         token: jwt.sign({ email: 'user@test.com' }, options.secretOrKey)
       };
-      chai.request(app)
+      chai
+        .request(app)
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
           res.should.have.status(200);
           console.log(res.body);
-          done();
+          done(err);
         });
     });
     it('should log a user in', (done) => {
@@ -75,13 +80,14 @@ describe('USER ROUTES TEST', () => {
         email: 'user@test.com',
         password: 'password'
       };
-      chai.request(app)
+      chai
+        .request(app)
         .post('/api/v1/auth/signin')
         .send(login)
         .end((err, res) => {
           res.should.have.status(401);
           console.log(res.body);
-          done();
+          done(err);
         });
     });
     it('should check for duplicates', (done) => {
@@ -95,13 +101,14 @@ describe('USER ROUTES TEST', () => {
         password: hashSync('password', genSaltSync(10)),
         token: jwt.sign({ email: 'user@test.com' }, options.secretOrKey)
       };
-      chai.request(app)
+      chai
+        .request(app)
         .post('/api/v1/auth/signup')
         .send(user)
         .end((err, res) => {
           res.should.have.status(400);
           chai.assert.hasAnyKeys(res.body, ['error']);
-          done();
+          done(err);
         });
     });
   });
