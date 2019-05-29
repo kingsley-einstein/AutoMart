@@ -1,11 +1,11 @@
 const viewCar = () => {
-    location.assign("car.html");
-}
+  location.assign('car.html');
+};
 
 const markFraud = () => {
-    location.assign("fraud.html");
-}
+  location.assign('fraud.html');
+};
 
 const placeOrder = () => {
-    location.assign("purchase.html");
-}
+  location.assign('purchase.html');
+};

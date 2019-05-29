@@ -38,7 +38,7 @@ export const orderTable = {
         order = value;
       }
     });
-    if (price && order.status === 'pending') {
+    if (price && order.status == 'pending') {
       order.old_price_offered = order.amount || order.new_price_offered;
       order.new_price_offered = price;
       if (order.amount) {
@@ -48,7 +48,7 @@ export const orderTable = {
     order.status = status || order.status;
 
     this.orders.forEach((value, index) => {
-      if (value.id === order.id) {
+      if (value.id == order.id) {
         this.orders.splice(index, 1, order);
       }
     });

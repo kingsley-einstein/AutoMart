@@ -34,6 +34,7 @@ router.delete('/car/:car_id', carController.deleteCar);
 
 // Order specific routes
 router.post('/order', orderController.create);
+router.get('/order/:order_id', orderController.getOrderById);
 router.patch('/order/:order_id/price', orderController.updatePrice);
 router.patch('/order/:order_id/status', orderController.updateStatus);
 
