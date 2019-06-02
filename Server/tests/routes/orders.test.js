@@ -15,6 +15,18 @@ describe('ORDER ROUTES TEST', () => {
           done(err);
         });
     });
+    it('should count orders made by user', (done) => {
+      const id = 1;
+      chai
+        .request(app)
+        .get(`/api/v1/orders/${id}/count`)
+        .end((err, res) => {
+          const { data } = res.body;
+          chai.assert.isNumber(data);
+          console.log(data);
+          done(err);
+        });
+    });
   });
   describe('POST', () => {
     it('should create an order', (done) => {
