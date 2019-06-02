@@ -89,6 +89,28 @@
         }
       }
     },
+    "/auth/token": {
+      "get": {
+        "description": "Gets a user by token.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "An authorization header",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "User from token.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
     "/users": {
       "get": {
         "description": "Gets all users",

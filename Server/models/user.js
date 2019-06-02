@@ -1,6 +1,6 @@
 import { hashSync, genSaltSync } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { authObj } from '../auth/passport';
+import { authObj } from '../auth';
 
 const { options } = authObj;
 
