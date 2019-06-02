@@ -1,11 +1,20 @@
-let id = 0;
+let id = 1;
 
 export const flagsTable = {
-  flags: [],
+  flags: [
+    {
+      id,
+      car_id: 1,
+      created_on: new Date(),
+      reason: 'Weird demands',
+      description: 'No Description'
+    }
+  ],
   create(obj) {
     id++;
     const item = obj;
     item.id = id;
+    item.created_on = new Date();
     this.flags.push(item);
 
     return item;
