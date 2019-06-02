@@ -2,12 +2,9 @@ import { usersTable } from '../models';
 
 export class TokenExtractor {
   async extractTokenFromHeader(req, res, next) {
-    const auth = req.headers.authorization;
-    await usersTable.getAllUsers().forEach((value) => {
-      if (value.token === auth.split(' ')[1]) {
-        req.user = value;
-        next();
-      }
-    });
+    const { authorization } = req.headers;
+    const user = await usersTable.users.find(value => value.token === authorization.split(' ')[1]);
+    req.user = user;
+    next();
   }
 }

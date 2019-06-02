@@ -3,11 +3,12 @@ import { serve, setup } from 'swagger-ui-express';
 import {
   UserController, CarController, OrderController, FlagController
 } from './controllers';
-import { upload } from './helpers';
+import { upload, TokenExtractor } from './helpers';
 import swaggerDoc from './docs/swagger.json';
 
 const router = Router();
 const file = upload();
+const extractor = new TokenExtractor();
 
 const userController = new UserController();
 const carController = new CarController();
@@ -26,6 +27,7 @@ router.get('/docs', setup(swaggerDoc));
 // User specific routes
 router.post('/auth/signup', userController.create);
 router.post('/auth/signin', userController.login);
+router.get('/auth/token', extractor.extractTokenFromHeader, userController.getUserByToken);
 router.get('/users', userController.getAllUsers);
 router.get('/users/:user_id', userController.getUser);
 

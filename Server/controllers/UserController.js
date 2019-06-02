@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { hashSync, genSaltSync, compareSync } from 'bcryptjs';
 import { usersTable } from '../models';
-import { authObj } from '../auth/passport';
+import { authObj } from '../auth';
 import { checkDuplicates, checkIfKeysArePresent, showMissingKeysError } from '../helpers';
 
 const { options } = authObj;
@@ -88,6 +88,28 @@ export class UserController {
         status: 200,
         data: user
       });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
+
+  async getUserByToken(req, res) {
+    try {
+      const { user } = req;
+      if (!user) {
+        res.status(401).json({
+          status: 401,
+          error: 'Unauthorized'
+        });
+      } else {
+        res.status(200).json({
+          status: 200,
+          data: user
+        });
+      }
     } catch (err) {
       res.status(500).json({
         status: 500,
