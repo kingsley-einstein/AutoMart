@@ -2,13 +2,6 @@ import { carsTable } from '../models';
 import { associations } from '../helpers';
 
 export class CarController {
-  constructor() {
-    // this.getCarsByStatus.bind(this);
-    // this.getCarsByBodyType.bind(this);
-    // console.log(this);
-    this.that = this;
-  }
-
   async create(req, res) {
     try {
       const { body } = req;
@@ -177,6 +170,40 @@ export class CarController {
       else if (body_type) {
         this.getCarsByBodyType(req, res);
       }
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
+
+  async getCarsByUser(req, res) {
+    try {
+      const { user_id } = req.params;
+      const cars = await carsTable.getCarsByUser(user_id);
+
+      res.status(200).json({
+        status: 200,
+        data: cars
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
+
+  async count(req, res) {
+    try {
+      const { user_id } = req.params;
+      const count = await carsTable.count(user_id);
+
+      res.status(200).json({
+        status: 200,
+        data: count
+      });
     } catch (err) {
       res.status(500).json({
         status: 500,
