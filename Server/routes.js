@@ -39,6 +39,7 @@ router.get('/car/:car_id', carController.getCar);
 router.get('/cars/:user_id/count', carController.count);
 router.get('/cars/:user_id/all', carController.getCarsByUser);
 router.get('/car', carController.getCarsByStatusOrBodyType.bind(carController));
+router.get('/cars/:user_id/by_status', carController.countByStatus);
 router.delete('/car/:car_id', carController.deleteCar);
 
 // Order specific routes

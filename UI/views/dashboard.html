@@ -1,32 +1,41 @@
-<!DOCTYPE <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/shared.css">
-    <link rel="stylesheet" href="../css/alert.css">
-    <link rel="stylesheet" href="../css/sidebar-mobile.css">
-    <link rel="stylesheet" href="../css/links.css">
-    <link rel="stylesheet" href="../css/cards.css">
-    <link rel="stylesheet" href="../css/texts.css">
+    <link rel="stylesheet" href="/css/shared.css">
+    <link rel="stylesheet" href="/css/alert.css">
+    <link rel="stylesheet" href="/css/sidebar-mobile.css">
+    <link rel="stylesheet" href="/css/links.css">
+    <link rel="stylesheet" href="/css/cards.css">
+    <link rel="stylesheet" href="/css/texts.css">
+    <link rel="stylesheet" href="/css/loader.css">
+    <link rel="stylesheet" href="/css/backdrop.css">
 </head>
 <body>
+        <div class="backdrop" id="backdrop">
+                <div class="flex">
+                    <div class="center col">
+                        <div class="loader wider"></div>
+                    </div>
+                </div>
+            </div>
     <div class="main">
         <div class="navbar">
             <a href="#">
                 <h3>AutoMart</h3>
             </a>
             <div class="nav-menu">
-                <a href="dashboard.html">Main</a>
-                <a href="order.html">Order</a>
-                <a href="my-ads.html">My ADs</a>
-                <a href="car-sale.html">Post New AD</a>
-                <a href="requests.html">Requests <span id="notif" class="notif-text">1</span></a>
-                <a href="purchase-orders.html">Purchase Orders</a>
-                <a href="admin.html">Admin <img src="../svg/admin.svg" class="img-sm-20"></a>
-                <a href="index.html" class="black-button-link">Logout</a>
+                <a href="/dashboard">Main</a>
+                <a href="/order">Order</a>
+                <a href="/my-ads">My ADs</a>
+                <a href="/car-sale">Post New AD</a>
+                <a href="/requests">Requests <span id="notif" class="notif-text">1</span></a>
+                <a href="/purchase-orders">Purchase Orders</a>
+                <a href="/admin">Admin <img src="/svg/admin.svg" class="img-sm-20"></a>
+                <a href="/logout" class="black-button-link">Logout</a>
             </div>
             <div class="nav-mobile-menu">
                 <div class="hamburger" id="hamburger">
@@ -51,14 +60,14 @@
         <section id="flex" class="flex">
             <div class="card">
                 <div>
-                    <img src="../svg/ads.svg">
+                    <img src="/svg/ads.svg">
                 </div>
                 <div>
                     <p class="info-text">
                         Posted ADs
                     </p>
-                    <p class="info-text">
-                        45
+                    <p class="info-text" id="ads-count">
+                        0
                     </p>
                 </div>
                 <div>
@@ -67,14 +76,14 @@
             </div>
             <div class="card">
                 <div>
-                    <img src="../svg/online-order.svg">
+                    <img src="/svg/online-order.svg">
                 </div>
                 <div>
                     <p class="info-text">
                         Purchase Orders
                     </p>
-                    <p class="info-text">
-                        30
+                    <p class="info-text" id="orders-count">
+                        0
                     </p>
                 </div>
                 <div>
@@ -83,56 +92,30 @@
             </div>
             <div class="card">
                 <div>
-                    <img src="../svg/triangle.svg">
+                    <img src="/svg/sold.svg">
                 </div>
                 <div>
                     <p class="info-text">
-                        Flagged ADs
+                        Sold
                     </p>
-                    <p class="info-text">
+                    <p class="info-text" id="sold-count">
                         0
                     </p>
                 </div>
             </div>
             <div class="card">
                 <div>
-                    <img src="../svg/sold.svg">
-                </div>
-                <div>
-                    <p class="info-text">
-                        Sold
-                    </p>
-                    <p class="info-text">
-                        17
-                    </p>
-                </div>
-            </div>
-            <div class="card">
-                <div>
-                    <img src="../svg/pending.svg">
+                    <img src="/svg/pending.svg">
                 </div>
                 <div>
                     <p class="info-text">
                         Pending
                     </p>
-                    <p class="info-text">
-                        15
+                    <p class="info-text" id="pending-count">
+                        0
                     </p>
                 </div>
             </div>
-            <div class="card">
-                    <div>
-                        <img src="../svg/x-button.svg">
-                    </div>
-                    <div>
-                        <p class="info-text">
-                            Rejected
-                        </p>
-                        <p class="info-text">
-                            5
-                        </p>
-                    </div>
-                </div>
         </section>
         <section id="footer" class="footer">
                 <div class="flex">
@@ -149,13 +132,14 @@
                     </div>
                 </div>
                 <div class="s-media">
-                    <img src="../svg/facebook-logo-in-circular-button-outlined-social-symbol.svg">
-                    <img src="../svg/social-twitter-circular-button.svg">
-                    <img src="../svg/google-plus-circular-button.svg">
-                    <img src="../svg/instagram.svg">
+                    <img src="/svg/facebook-logo-in-circular-button-outlined-social-symbol.svg">
+                    <img src="/svg/social-twitter-circular-button.svg">
+                    <img src="/svg/google-plus-circular-button.svg">
+                    <img src="/svg/instagram.svg">
                 </div>
             </section>
     </div>
-    <script src="../js/sidebars.js"></script>
+    <script src="/js/sidebars.js"></script>
+    <script src="/js/dashboard.js"></script>
 </body>
 </html>

@@ -1,0 +1,29 @@
+@keyframes roll {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
+    border: 3px solid silver;
+    border-top-color: mediumpurple;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: roll 2s linear infinite;
+    margin: 10px;
+    transition: 500ms all ease-in;
+}
+
+.loader.hide {
+    display: none;
+}
+
+.loader.wider {
+    width: 50px;
+    height: 50px;
+    margin-top: 12em;
+}

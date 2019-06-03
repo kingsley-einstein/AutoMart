@@ -7,7 +7,7 @@ export const carsTable = {
       owner: 1,
       created_on: new Date(),
       state: 'new',
-      status: 'available',
+      status: 'Available',
       price: 145.0,
       manufacturer: 'Toyota',
       model: 'Camry',
@@ -147,6 +147,15 @@ export const carsTable = {
         if (value.owner == user_id) count++;
       });
     }
+    return count;
+  },
+  countByStatus(user_id, status) {
+    let count = 0;
+    this.cars.forEach((value) => {
+      if (value.owner == user_id && value.status === status) {
+        count++;
+      }
+    });
     return count;
   }
 };

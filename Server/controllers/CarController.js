@@ -211,4 +211,22 @@ export class CarController {
       });
     }
   }
+
+  async countByStatus(req, res) {
+    try {
+      const { user_id } = req.params;
+      const { status } = req.query;
+      const count = await carsTable.countByStatus(user_id, status);
+
+      res.status(200).json({
+        status: 200,
+        data: count
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
 }

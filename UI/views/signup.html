@@ -4,11 +4,12 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="../css/shared.css">
-        <link rel="stylesheet" href="../css/forms.css">
-        <link rel="stylesheet" href="../css/links.css">
-        <link rel="stylesheet" href="../css/sidebar-mobile.css">
-        <link rel="stylesheet" href="../css/alert.css">
+        <link rel="stylesheet" href="/css/shared.css">
+        <link rel="stylesheet" href="/css/forms.css">
+        <link rel="stylesheet" href="/css/links.css">
+        <link rel="stylesheet" href="/css/sidebar-mobile.css">
+        <link rel="stylesheet" href="/css/alert.css">
+        <link rel="stylesheet" href="/css/loader.css">
         <title>Auto Mart | Sign Up</title>
     </head>
     <body>
@@ -18,8 +19,8 @@
                             <h3>AutoMart</h3>
                         </a>
                         <div class="nav-menu">
-                            <a href="index.html">Home</a>
-                            <a href="signin.html" class="black-button-link">Login</a>
+                            <a href="/">Home</a>
+                            <a href="/login" class="black-button-link">Login</a>
                         </div>
                         <div class="nav-mobile-menu">
                             <div></div>
@@ -35,26 +36,28 @@
                     <!--Visible only on mobile-->
                     <div class="sidebar-mobile" id="sidebar-mobile">
                         <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="signin.html">Login</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/login">Login</a></li>
                         </ul>
                     </div>
             <div class="flex">
                 <div class="center col">
                     <div id="alert" class="alert-box"></div>
+                    <div id="loader" class="loader hide"></div>
                    <div class="form-group">
                        <h3>Register</h3>
-                       <form id="sign_up_form">
-                           <input class="input" type="email" placeholder="Email">
-                           <input class="input" type="text" placeholder="First Name">
-                           <input class="input" type="text" placeholder="Last Name">
-                           <input class="input" type="password" placeholder="Password">
-                           <input class="input" type="password" placeholder="Confirm Password">
-                           <input class="input" type="text" placeholder="Address">
-                           <button class="sign-up" type="submit">Sign Up</button>
+                       <form id="sign_up_form" enctype="application/json">
+                           <input id="email" class="input" name="email" type="email" placeholder="Email" required>
+                           <input id="first_name" class="input" name="first_name" type="text" placeholder="First Name">
+                           <input id="last_name" class="input" name="last_name" type="text" placeholder="Last Name">
+                           <input id="password" class="input" name="password" type="password" placeholder="Password" required>
+                           <input id="confpassword" class="input" name="confpassword" type="password" placeholder="Confirm Password" required>
+                           <input id="address" class="input" name="address" type="text" placeholder="Address">
+                           <input id="phone_number" class="input" name="phone_number" type="tel" placeholder="Phone Number">
+                           <button id="regBtn" class="sign-up" type="submit">Sign Up</button>
                        </form>
                        <span>Already registered?</span>
-                       <a href="signin.html">Sign In</a>
+                       <a href="/login">Sign In</a>
                    </div> 
                 </div>
             </div>
@@ -73,14 +76,14 @@
                     </div>
                 </div>
                 <div class="s-media">
-                    <img src="../svg/facebook-logo-in-circular-button-outlined-social-symbol.svg">
-                    <img src="../svg/social-twitter-circular-button.svg">
-                    <img src="../svg/google-plus-circular-button.svg">
-                    <img src="../svg/instagram.svg">
+                    <img src="/svg/facebook-logo-in-circular-button-outlined-social-symbol.svg">
+                    <img src="/svg/social-twitter-circular-button.svg">
+                    <img src="/svg/google-plus-circular-button.svg">
+                    <img src="/svg/instagram.svg">
                 </div>
             </section>
         </div>
-        <script src="../js/sidebars.js"></script>
-        <script src="../js/signup.js"></script>
+        <script src="/js/sidebars.js"></script>
+        <script src="/js/signup.js"></script>
     </body>
 </html>
