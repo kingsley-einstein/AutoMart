@@ -8,7 +8,7 @@ export const preventIdle = () => {
     }, (res) => {
       res.on('data', (chunk) => {
         try {
-          console.log(chunk);
+          console.log(JSON.stringify(chunk));
         } catch (err) {
           console.log(err);
         }
@@ -16,5 +16,5 @@ export const preventIdle = () => {
     }).on('error', (err) => {
       console.log(err);
     });
-  }, 10 * 60 * 1000);
+  }, 120000);
 };
