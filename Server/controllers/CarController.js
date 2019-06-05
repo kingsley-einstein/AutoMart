@@ -65,7 +65,11 @@ export class CarController {
   }
 
   async getCar(req, res) {
+    // console.log(this);
+    // const self = this;
+    // console.log(self);
     try {
+      // console.log(this);
       const { car_id } = req.params;
       const car = await carsTable.getCarById(car_id);
       await associations.car_user(car);
@@ -131,10 +135,10 @@ export class CarController {
   async deleteCar(req, res) {
     try {
       const { car_id } = req.params;
-      const isDeleted = await carsTable.delete(car_id);
+      const deleted = await carsTable.delete(car_id);
       res.status(200).json({
         status: 200,
-        data: isDeleted
+        data: deleted
       });
     } catch (err) {
       res.status(500).json({
@@ -164,8 +168,42 @@ export class CarController {
       const { status, body_type } = req.query;
       if (status) this.getCarsByStatus(req, res);
       else if (body_type) {
-        this.getCarsByBodyType(body_type);
+        this.getCarsByBodyType(req, res);
       }
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
+
+  async getCarsByUser(req, res) {
+    try {
+      const { user_id } = req.params;
+      const cars = await carsTable.getCarsByUser(user_id);
+
+      res.status(200).json({
+        status: 200,
+        data: cars
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
+
+  async count(req, res) {
+    try {
+      const { user_id } = req.params;
+      const count = await carsTable.count(user_id);
+
+      res.status(200).json({
+        status: 200,
+        data: count
+      });
     } catch (err) {
       res.status(500).json({
         status: 500,

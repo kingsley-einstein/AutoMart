@@ -8,3 +8,5 @@ const config = new Config();
 config.configure(app);
 
 app.listen(port, () => console.log(`Express server started on port: ${port}`));
+
+export default app;

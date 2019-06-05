@@ -1,4 +1,8 @@
 import { hashSync, genSaltSync } from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import { authObj } from '../auth';
+
+const { options } = authObj;
 
 let id = 1;
 
@@ -12,7 +16,8 @@ export const usersTable = {
       password: hashSync('password', genSaltSync(10)),
       address: '5, Kao Alabi Crescent, Owutu, Agric, Ikorodu, Lagos',
       is_admin: true,
-      phone_number: '+2349090456789'
+      phone_number: '+2349090456789',
+      token: jwt.sign({ email: 'javaprodigy56@gmail.com' }, options.secretOrKey)
     }
   ],
   create(obj) {
@@ -98,6 +103,6 @@ export const usersTable = {
         }
       });
     }
-    return true;
+    return 'User deleted';
   }
 };
