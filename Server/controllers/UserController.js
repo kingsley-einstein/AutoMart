@@ -10,7 +10,7 @@ export class UserController {
   async create(req, res) {
     try {
       const { body } = req;
-      if (!checkIfKeysArePresent(body, ['email', 'password'])) showMissingKeysError(body, ['email', 'password'], res);
+      if (!checkIfKeysArePresent(body, ['email', 'password', 'first_name', 'last_name'])) showMissingKeysError(body, ['email', 'password', 'first_name', 'last_name'], res);
       else {
         body.token = jwt.sign({ email: body.email }, options.secretOrKey);
         body.password = hashSync(body.password, genSaltSync(10));
