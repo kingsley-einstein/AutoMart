@@ -3,6 +3,7 @@ import http from 'http';
 export const preventIdle = () => {
   setInterval(() => {
     http.get({
+      host: 'https://automart-andela.herokuapp.com',
       port: process.env.PORT,
       path: '/api/v1'
     }, (res) => {
