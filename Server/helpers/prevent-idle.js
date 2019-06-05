@@ -4,7 +4,7 @@ export const preventIdle = () => {
   setInterval(() => {
     http.get({
       host: 'automart-andela.herokuapp.com',
-      port: process.env.PORT,
+      port: 8180,
       path: '/api/v1',
       timeout: 200
     }, (res) => {
