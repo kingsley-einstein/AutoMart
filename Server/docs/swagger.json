@@ -719,9 +719,6 @@
     "User": {
       "required": ["email", "password"],
       "properties": {
-        "id": {
-          "type": "number"
-        },
         "email": {
           "type": "string",
           "uniqueItems": true
@@ -750,9 +747,6 @@
     "Car": {
       "required": ["owner", "state", "price", "manufacturer", "model", "body_type"],
       "properties": {
-        "id": {
-          "type": "number"
-        },
         "owner": {
           "type": "number"
         },
@@ -783,9 +777,6 @@
     "Order": {
       "required": ["buyer", "car_id", "amount", "seller"],
       "properties": {
-        "id": {
-          "type": "number"
-        },
         "buyer": {
           "type": "number"
         },
@@ -810,9 +801,6 @@
     "Flag": {
       "required": ["car_id", "reason"],
       "properties": {
-        "id": {
-          "type": "number"
-        },
         "car_id": {
           "type": "number"
         },
