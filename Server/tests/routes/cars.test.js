@@ -40,6 +40,30 @@ describe('CAR ROUTES TEST', () => {
           done(err);
         });
     });
+    it('should count ADs posted by user', (done) => {
+      const id = 1;
+      chai
+        .request(app)
+        .get(`/api/v1/cars/${id}/count`)
+        .end((err, res) => {
+          const { data } = res.body;
+          chai.assert.isNumber(data);
+          console.log(data);
+          done(err);
+        });
+    });
+    it('should get all ADs posted by user', (done) => {
+      const id = 1;
+      chai
+        .request(app)
+        .get(`/api/v1/cars/${id}/all`)
+        .end((err, res) => {
+          const { data } = res.body;
+          chai.assert.isArray(data);
+          console.log(data);
+          done(err);
+        });
+    });
   });
   describe('PATCH', () => {
     it('should mark a car as sold', (done) => {

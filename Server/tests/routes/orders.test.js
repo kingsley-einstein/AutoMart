@@ -15,6 +15,56 @@ describe('ORDER ROUTES TEST', () => {
           done(err);
         });
     });
+    it('should count orders made by user', (done) => {
+      const id = 1;
+      chai
+        .request(app)
+        .get(`/api/v1/orders/${id}/count`)
+        .end((err, res) => {
+          const { data } = res.body;
+          chai.assert.isNumber(data);
+          console.log(data);
+          done(err);
+        });
+    });
+    it('should count purchase requests', (done) => {
+      const id = 1;
+      chai
+        .request(app)
+        .get(`/api/v1/orders/${id}/seller/count`)
+        .end((err, res) => {
+          const { data } = res.body;
+          chai.assert.isNumber(data);
+          console.log(data);
+          done(err);
+        });
+    });
+    it('should get orders made by user', (done) => {
+      const id = 1;
+      chai
+        .request(app)
+        .get(`/api/v1/orders/${id}/buyer`)
+        .end((err, res) => {
+          const { data } = res.body;
+          chai.assert.isArray(data);
+          res.should.have.status(200);
+          console.log(data);
+          done(err);
+        });
+    });
+    it('should get purchase requests', (done) => {
+      const id = 1;
+      chai
+        .request(app)
+        .get(`/api/v1/orders/${id}/seller`)
+        .end((err, res) => {
+          const { data } = res.body;
+          chai.assert.isArray(data);
+          res.should.have.status(200);
+          console.log(data);
+          done(err);
+        });
+    });
   });
   describe('POST', () => {
     it('should create an order', (done) => {

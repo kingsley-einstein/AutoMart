@@ -1,0 +1,820 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "AutoMart API",
+    "description": "The API for the AutoMart app"
+  },
+  "basePath": "/api/v1",
+  "schemes": ["http"],
+  "produces": ["application/json"],
+  "paths": {
+    "/users/{user_id}": {
+      "get": {
+        "description": "Retrieves data of user with specified ID",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of user to retrieve.",
+            "type": "number"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A user object is sent",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/auth/signup": {
+      "post": {
+        "description": "Creates a new user",
+        "parameters": [
+          {
+            "name": "user",
+            "description": "User to be created.",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "description": "Logs a user in.",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User to be logged in",
+            "schema": {
+              "type": "object",
+              "required": ["email", "password"],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "A user object is sent",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/auth/token": {
+      "get": {
+        "description": "Gets a user by token.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "An authorization header",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "User from token.",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "description": "Gets all users",
+        "parameters": [],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "An array of users is sent",
+            "schema": {
+              "$ref": "#/definitions/Users"
+            }
+          }
+        }
+      }
+    },
+    "/car": {
+      "post": {
+        "description": "Creates a new car AD.",
+        "parameters": [
+          {
+            "name": "owner",
+            "in": "formData",
+            "description": "Car owner.",
+            "type": "number"
+          },
+          {
+            "name": "state",
+            "in": "formData",
+            "description": "Car state. <new, sold>",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "formData",
+            "description": "Car price.",
+            "type": "number"
+          },
+          {
+            "name": "manufacturer",
+            "in": "formData",
+            "description": "Car manufacturer.",
+            "type": "string"
+          },
+          {
+            "name": "model",
+            "in": "formData",
+            "description": "Car model.",
+            "type": "string"
+          },
+          {
+            "name": "body_type",
+            "in": "formData",
+            "description": "The vehicle's body type. <car, truck, van e.t.c.>.",
+            "type": "string"
+          },
+          {
+            "name": "picture",
+            "in": "formData",
+            "description": "Car image.",
+            "type": "file"
+          }
+        ],
+        "produces": ["application/json"],
+        "consumes": ["multipart/form-data"],
+        "responses": {
+          "200": {
+            "description": "A new AD is created",
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Retrieves an AD where the car's attribute matches values of given parameters. Some of the parameters are optional",
+        "parameters": [
+          {
+            "name": "status",
+            "description": "The car's status",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "min_price",
+            "description": "The least price.",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "max_price",
+            "description": "The highest price",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "state",
+            "description": "The state of the car. <new, old>",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "manufacturer",
+            "description": "The car manufacturer.",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "body_type",
+            "description": "The vehicle's body type. <car, truck, van e.t.c.>."
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Returns a car object",
+            "schema": {
+              "$ref": "#/definitions/Cars"
+            }
+          }
+        }
+      }
+    },
+    "/car/{car_id}/status": {
+      "patch": {
+        "description": "Mark a car as sold.",
+        "parameters": [
+          {
+            "name": "car_id",
+            "in": "path",
+            "description": "ID of the car to mark as sold.",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Returns the updated car object.",
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          }
+        }
+      }
+    },
+    "/car/{car_id}/price": {
+      "patch": {
+        "description": "Update car price.",
+        "parameters": [
+          {
+            "name": "car_id",
+            "in": "path",
+            "description": "ID of car which price is updated.",
+            "type": "number"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "The new price of the car.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Receives the updated car object.",
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          }
+        }
+      }
+    },
+    "/car/{car_id}": {
+      "get": {
+        "description": "Retrieve car information.",
+        "parameters": [
+          {
+            "name": "car_id",
+            "in": "path",
+            "description": "ID of car which information is retrieved.",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "The car object.",
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Deletes a car AD.",
+        "parameters": [
+          {
+            "name": "car_id",
+            "in": "path",
+            "description": "ID of the car to delete",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Message on success.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number"
+                },
+                "data": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cars/{user_id}/count": {
+      "get": {
+        "description": "Count cars by specific user.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of user.",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Object containing data.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number"
+                },
+                "data": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cars/{user_id}/all": {
+      "get": {
+        "description": "Gets all car ADs by user.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "The user's ID",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "An array off car ADs by user",
+            "schema": {
+              "$ref": "#/definitions/Cars"
+            }
+          }
+        }
+      }
+    },
+    "/order": {
+      "post": {
+        "description": "Make a purchase order",
+        "parameters": [
+          {
+            "name": "order",
+            "in": "body",
+            "description": "New purchase order.",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New purchase order.",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        }
+      }
+    },
+    "/order/{order_id}": {
+      "get": {
+        "description": "Get an order by ID.",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "ID of the order to retrieve",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "The order object",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        }
+      }
+    },
+    "/orders/{seller_id}/seller": {
+      "get": {
+        "description": "Get requests to buy a seller's car.",
+        "parameters": [
+          {
+            "name": "seller_id",
+            "in": "path",
+            "description": "ID of the seller",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Retrieved object.",
+            "schema": {
+              "$ref": "#/definitions/Orders"
+            }
+          }
+        }
+      }
+    },
+    "/orders/{user_id}/buyer": {
+      "get": {
+        "description": "Get a user's purchase orders.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of the buyer",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Retrieved object.",
+            "schema": {
+              "$ref": "#/definitions/Orders"
+            }
+          }
+        }
+      }
+    },
+    "/orders/{user_id}/count": {
+      "get": {
+        "description": "Returns the total number of purchase orders made by a user.",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "description": "ID of user.",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "The order object.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number"
+                },
+                "data": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{seller_id}/seller/count": {
+      "get": {
+        "description": "Returns number of purchase requests on user's ADs.",
+        "parameters": [
+          {
+            "name": "seller_id",
+            "in": "path",
+            "description": "ID of the seller.",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "The order object.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number"
+                },
+                "data": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/orders/{order_id}/price": {
+      "patch": {
+        "description": "Updates the price placed on an order.",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "Order ID.",
+            "type": "number"
+          },
+          {
+            "name": "order",
+            "in": "body",
+            "description": "New order price.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "The updated order",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        }
+      }
+    },
+    "/orders/{order_id}/status": {
+      "patch": {
+        "description": "Updates the status of an order.",
+        "parameters": [
+          {
+            "name": "order_id",
+            "in": "path",
+            "description": "Order ID.",
+            "type": "number"
+          },
+          {
+            "name": "order",
+            "in": "body",
+            "description": "New order status",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Order's status is updated",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        }
+      }
+    },
+    "/flag": {
+      "post": {
+        "description": "Flag an AD.",
+        "parameters": [
+          {
+            "name": "flag",
+            "in": "body",
+            "description": "The flag object.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "car_id": {
+                  "type": "number"
+                },
+                "reason": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "An AD is flagged",
+            "schema": {
+              "$ref": "#/definitions/Flag"
+            }
+          }
+        }
+      },
+      "get": {
+        "description": "Gets all flagged ADs.",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Returns all flagged ADs",
+            "schema": {
+              "$ref": "#/definitions/Flags"
+            }
+          }
+        }
+      }
+    },
+    "/flag/{flag_id}": {
+      "get": {
+        "description": "Retrieves a specific flagged AD.",
+        "parameters": [
+          {
+            "name": "flag_id",
+            "in": "path",
+            "description": "Flag ID.",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Returns specific flag.",
+            "schema": {
+              "$ref": "#/definitions/Flag"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a flag.",
+        "parameters": [
+          {
+            "name": "flag_id",
+            "in": "path",
+            "description": "Flag ID.",
+            "type": "number"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Sends a message confirming deletion",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "number"
+                },
+                "data": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": ["email", "password"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "password": {
+          "type": "string"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "is_admin": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    },
+    "Car": {
+      "required": ["owner", "state", "price", "manufacturer", "model", "body_type"],
+      "properties": {
+        "owner": {
+          "type": "number"
+        },
+        "state": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "body_type": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "Cars": {
+      "type": "array",
+      "$ref": "#/definitions/Car"
+    },
+    "Order": {
+      "required": ["buyer", "car_id", "amount", "seller"],
+      "properties": {
+        "buyer": {
+          "type": "number"
+        },
+        "car_id": {
+          "type": "number"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "status": {
+          "type": "number"
+        },
+        "seller": {
+          "type": "number"
+        }
+      }
+    },
+    "Orders": {
+      "type": "array",
+      "$ref": "#/definitions/Order"
+    },
+    "Flag": {
+      "required": ["car_id", "reason"],
+      "properties": {
+        "car_id": {
+          "type": "number"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "Flags": {
+      "type": "array",
+      "$ref": "#/definitions/Flag"
+    }
+  }
+}

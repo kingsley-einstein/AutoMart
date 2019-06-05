@@ -3,7 +3,7 @@ import { hashSync, genSaltSync } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import chai from '../config';
 import app from '../..';
-import { authObj } from '../../auth/passport';
+import { authObj } from '../../auth';
 
 // chai.should();
 

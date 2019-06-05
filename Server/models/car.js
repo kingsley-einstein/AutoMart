@@ -50,6 +50,14 @@ export const carsTable = {
   },
   /**
    *
+   * @param {number} user_id
+   */
+  getCarsByUser(user_id) {
+    const arr = this.cars.filter(value => value.owner == user_id);
+    return arr;
+  },
+  /**
+   *
    * @param {string} status
    * @param {number} min_price
    * @param {number} max_price
@@ -126,5 +134,19 @@ export const carsTable = {
     }
 
     return 'Car Ad successfully deleted';
+  },
+  /**
+   *
+   * @param {number} user_id
+   */
+  count(user_id) {
+    let count = 0;
+    if (!user_id) count = this.cars.length;
+    else {
+      this.cars.forEach((value) => {
+        if (value.owner == user_id) count++;
+      });
+    }
+    return count;
   }
 };
