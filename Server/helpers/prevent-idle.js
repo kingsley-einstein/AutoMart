@@ -5,7 +5,8 @@ export const preventIdle = () => {
     http.get({
       host: 'automart-andela.herokuapp.com',
       port: process.env.PORT,
-      path: '/api/v1'
+      path: '/api/v1',
+      timeout: 200
     }, (res) => {
       res.on('data', (chunk) => {
         try {
