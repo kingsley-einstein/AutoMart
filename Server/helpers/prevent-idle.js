@@ -16,6 +16,6 @@ export const preventIdle = () => {
       });
     }).on('error', (err) => {
       console.log(err);
-    });
+    }).end(() => console.log('Done'));
   }, 120000);
 };
