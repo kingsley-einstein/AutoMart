@@ -2,10 +2,11 @@ import { Pool } from 'pg';
 import { environment } from '../../environment';
 
 const {
-  database, user, password, port
+  database, user, password, port, host
 } = environment;
 
 export const pool = new Pool({
+  host,
   user,
   database,
   password,
@@ -24,10 +25,12 @@ pool.on('connect', () => {
  */
 export const createTables = (queries) => {
   queries.forEach((query) => {
-    pool.query(query).then((res) => {
-      console.log(res);
-      pool.end();
-    })
+    pool
+      .query(query)
+      .then((res) => {
+        console.log(res);
+        // pool.end();
+      })
       .catch((err) => {
         console.log(err);
         pool.end();

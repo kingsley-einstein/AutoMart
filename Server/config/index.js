@@ -1,7 +1,7 @@
 import { json, urlencoded } from 'body-parser';
 // import logger from 'morgan';
 import router from '../routes';
-import { preventIdle } from '../helpers';
+// import { preventIdle } from '../helpers';
 // import { authObj } from '../auth/passport';
 
 // const { passport } = authObj;
@@ -13,6 +13,6 @@ export default class Config {
     app.use(urlencoded({ extended: true }));
     // app.use(logger('dev'));
     app.use('/api/v1', router);
-    preventIdle();
+    // preventIdle();
   }
 }
