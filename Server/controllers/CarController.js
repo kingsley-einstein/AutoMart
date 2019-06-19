@@ -222,83 +222,116 @@ export class CarController {
     }
   }
 
-  //   async deleteCar(req, res) {
-  //     try {
-  //       const { car_id } = req.params;
-  //       const deleted = await carsTable.delete(car_id);
-  //       res.status(200).json({
-  //         status: 200,
-  //         data: deleted
-  //       });
-  //     } catch (err) {
-  //       res.status(500).json({
-  //         status: 500,
-  //         error: err.message
-  //       });
-  //     }
-  //   }
+  async deleteCar(req, res) {
+    try {
+      const { car_id } = req.params;
+      await pool
+        .query('DELETE FROM cars WHERE id = $1', [car_id])
+        .then(() => {
+          res.status(200).json({
+            status: 200,
+            data: 'Item successfully deleted'
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            status: 500,
+            error: err.message
+          });
+        });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
 
-  //   async getCars(req, res) {
-  //     try {
-  //       const cars = await carsTable.getCars();
-  //       res.status(200).json({
-  //         status: 200,
-  //         data: cars
-  //       });
-  //     } catch (err) {
-  //       res.status(500).json({
-  //         status: 500,
-  //         error: err.message
-  //       });
-  //     }
-  //   }
+  async getCars(req, res) {
+    try {
+      const cars = await new Promise((resolve, reject) => {
+        pool
+          .query('SELECT * FROM cars')
+          .then((result) => {
+            const { rows } = result;
+            resolve(rows);
+          })
+          .catch(err => reject(err));
+      });
+      res.status(200).json({
+        status: 200,
+        data: cars
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
 
-  //   async getCarsByStatusOrBodyType(req, res) {
-  //     try {
-  //       const { status, body_type } = req.query;
-  //       if (status) this.getCarsByStatus(req, res);
-  //       else if (body_type) {
-  //         this.getCarsByBodyType(req, res);
-  //       }
-  //     } catch (err) {
-  //       res.status(500).json({
-  //         status: 500,
-  //         error: err.message
-  //       });
-  //     }
-  //   }
+  async getCarsByStatusOrBodyType(req, res) {
+    try {
+      const { status, body_type } = req.query;
+      if (status) this.getCarsByStatus(req, res);
+      else if (body_type) {
+        this.getCarsByBodyType(req, res);
+      }
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
 
-  //   async getCarsByUser(req, res) {
-  //     try {
-  //       const { user_id } = req.params;
-  //       const cars = await carsTable.getCarsByUser(user_id);
+  async getCarsByUser(req, res) {
+    try {
+      const { user_id } = req.params;
+      const cars = await new Promise((resolve, reject) => {
+        pool
+          .query('SELECT * FROM cars WHERE user_id = $1', [user_id])
+          .then((result) => {
+            const { rows } = result;
+            resolve(rows);
+          })
+          .catch(err => reject(err));
+      });
 
-  //       res.status(200).json({
-  //         status: 200,
-  //         data: cars
-  //       });
-  //     } catch (err) {
-  //       res.status(500).json({
-  //         status: 500,
-  //         error: err.message
-  //       });
-  //     }
-  //   }
+      res.status(200).json({
+        status: 200,
+        data: cars
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
 
-  //   async count(req, res) {
-  //     try {
-  //       const { user_id } = req.params;
-  //       const count = await carsTable.count(user_id);
+  async count(req, res) {
+    try {
+      const { user_id } = req.params;
+      const count = await new Promise((resolve, reject) => {
+        pool
+          .query('SELECT * FROM cars WHERE user_id = $1', [user_id])
+          .then((result) => {
+            const { rowCount } = result;
+            resolve(rowCount);
+          })
+          .catch(err => reject(err));
+      });
 
-  //       res.status(200).json({
-  //         status: 200,
-  //         data: count
-  //       });
-  //     } catch (err) {
-  //       res.status(500).json({
-  //         status: 500,
-  //         error: err.message
-  //       });
-  //     }
-  //   }
+      res.status(200).json({
+        status: 200,
+        data: count
+      });
+    } catch (err) {
+      res.status(500).json({
+        status: 500,
+        error: err.message
+      });
+    }
+  }
 }

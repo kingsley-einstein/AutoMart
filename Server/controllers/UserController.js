@@ -16,7 +16,7 @@ export class UserController {
       } else {
         body.token = jwt.sign({ email: body.email }, options.secretOrKey);
         body.password = hashSync(body.password, genSaltSync(10));
-        if (checkDuplicates.userAlreadyExists(body)) {
+        if (await checkDuplicates.userAlreadyExists(body)) {
           res.status(400).json({
             status: 400,
             error: 'User with email already exists'
@@ -24,8 +24,16 @@ export class UserController {
         } else {
           await pool
             .query(
-              'INSERT INTO users(first_name, last_name, email, password, token, address) values($1, $2, $3, $4, $5, $6") returning *',
-              [body.first_name, body.last_name, body.email, body.password, body.token, body.address]
+              'INSERT INTO users(first_name, last_name, email, password, token, address, is_admin) values($1, $2, $3, $4, $5, $6, $7) returning *',
+              [
+                body.first_name,
+                body.last_name,
+                body.email,
+                body.password,
+                body.token,
+                body.address,
+                body.is_admin
+              ]
             )
             .then((data) => {
               res.status(201).json({

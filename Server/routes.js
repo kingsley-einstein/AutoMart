@@ -1,17 +1,19 @@
 import { Router } from 'express';
 // import { serve, setup } from 'swagger-ui-express';
-import { UserController } from './controllers';
-import { TokenExtractor } from './helpers';
+import {
+  UserController, CarController, OrderController, FlagController
+} from './controllers';
+import { TokenExtractor, upload } from './helpers';
 // import swaggerDoc from './docs/swagger.json';
 
 const router = Router();
-// const file = upload();
+const file = upload();
 const extractor = new TokenExtractor();
 
 const userController = new UserController();
-// const carController = new CarController();
-// const orderController = new OrderController();
-// const flagController = new FlagController();
+const carController = new CarController();
+const orderController = new OrderController();
+const flagController = new FlagController();
 
 router.get('/', (req, res) => {
   res.status(200).json({
@@ -30,29 +32,53 @@ router.get('/users', extractor.extractTokenFromHeader, userController.getAllUser
 router.get('/users/:user_id', extractor.extractTokenFromHeader, userController.getUser);
 
 // Car specific routes
-// router.post('/car', file.single('picture'), carController.create);
-// router.patch('/car/:car_id/status', carController.markSold);
-// router.patch('/car/:car_id/price', carController.updatePrice);
-// router.get('/car/:car_id', carController.getCar);
-// router.get('/cars/:user_id/count', carController.count);
-// router.get('/cars/:user_id/all', carController.getCarsByUser);
-// router.get('/car', carController.getCarsByStatusOrBodyType.bind(carController));
-// router.delete('/car/:car_id', carController.deleteCar);
+router.post('/car', extractor.extractTokenFromHeader, file.single('picture'), carController.create);
+router.patch('/car/:car_id/status', extractor.extractTokenFromHeader, carController.markSold);
+router.patch('/car/:car_id/price', extractor.extractTokenFromHeader, carController.updatePrice);
+router.get('/car/:car_id', extractor.extractTokenFromHeader, carController.getCar);
+router.get('/cars/:user_id/count', extractor.extractTokenFromHeader, carController.count);
+router.get('/cars/:user_id/all', extractor.extractTokenFromHeader, carController.getCarsByUser);
+router.get(
+  '/car',
+  extractor.extractTokenFromHeader,
+  carController.getCarsByStatusOrBodyType.bind(carController)
+);
+router.delete('/car/:car_id', extractor.extractTokenFromHeader, carController.deleteCar);
 
 // Order specific routes
-// router.post('/order', orderController.create);
-// router.get('/order/:order_id', orderController.getOrderById);
-// router.get('/orders/:seller_id/seller', orderController.getOrdersBySeller);
-// router.get('/orders/:user_id/buyer', orderController.getOrdersByUser);
-// router.get('/orders/:user_id/count', orderController.count);
-// router.get('/orders/:seller_id/seller/count', orderController.countBySeller);
-// router.patch('/order/:order_id/price', orderController.updatePrice);
-// router.patch('/order/:order_id/status', orderController.updateStatus);
+router.post('/order', extractor.extractTokenFromHeader, orderController.create);
+router.get('/order/:order_id', extractor.extractTokenFromHeader, orderController.getOrderById);
+router.get(
+  '/orders/:seller_id/seller',
+  extractor.extractTokenFromHeader,
+  orderController.getOrdersBySeller
+);
+router.get(
+  '/orders/:user_id/buyer',
+  extractor.extractTokenFromHeader,
+  orderController.getOrdersByUser
+);
+router.get('/orders/:user_id/count', extractor.extractTokenFromHeader, orderController.count);
+router.get(
+  '/orders/:seller_id/seller/count',
+  extractor.extractTokenFromHeader,
+  orderController.countBySeller
+);
+router.patch(
+  '/order/:order_id/price',
+  extractor.extractTokenFromHeader,
+  orderController.updatePrice
+);
+router.patch(
+  '/order/:order_id/status',
+  extractor.extractTokenFromHeader,
+  orderController.updateStatus
+);
 
 // Flag specific routes
-// router.post('/flag', flagController.create);
-// router.get('/flag', flagController.getAllFlags);
-// router.get('/flag/:flag_id', flagController.getFlag);
-// router.delete('/flag/:flag_id', flagController.deleteFlag);
+router.post('/flag', extractor.extractTokenFromHeader, flagController.create);
+router.get('/flag', extractor.extractTokenFromHeader, flagController.getAllFlags);
+router.get('/flag/:flag_id', extractor.extractTokenFromHeader, flagController.getFlag);
+router.delete('/flag/:flag_id', extractor.extractTokenFromHeader, flagController.deleteFlag);
 
 export default router;

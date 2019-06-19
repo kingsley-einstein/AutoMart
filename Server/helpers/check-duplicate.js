@@ -8,6 +8,7 @@ export const checkDuplicates = {
       .then((data) => {
         const { rows } = data;
         const result = rows[0];
+        console.log(data);
         if (result) {
           resolve(true);
         } else {

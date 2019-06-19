@@ -23,9 +23,9 @@ pool.on('connect', () => {
  *
  * @param {any[]} queries
  */
-export const createTables = (queries) => {
-  queries.forEach((query) => {
-    pool
+export const runQueries = async (queries) => {
+  await queries.forEach(async (query) => {
+    await pool
       .query(query)
       .then((res) => {
         console.log(res);
@@ -33,7 +33,7 @@ export const createTables = (queries) => {
       })
       .catch((err) => {
         console.log(err);
-        pool.end();
+        // pool.end();
       });
   });
 };
