@@ -2,15 +2,11 @@ import { Pool } from 'pg';
 import { environment } from '../../environment';
 
 const {
-  database, user, password, port, host
+  connectionString
 } = environment;
 
 export const pool = new Pool({
-  host,
-  user,
-  database,
-  password,
-  port,
+  connectionString,
   max: 10,
   idleTimeoutMillis: 30000
 });
