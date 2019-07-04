@@ -12,9 +12,7 @@ export default class Config {
     app.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Methods', '*');
-      if (req.method == 'OPTIONS') {
-        res.status(200).end();
-      }
+      res.header('Access-Control-Allow-Headers', '*');
       next();
     });
     // app.options('*', (req, res, next) => {});
