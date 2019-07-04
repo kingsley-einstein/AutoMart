@@ -13,6 +13,7 @@ export default class Config {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Methods', '*');
       res.header('Access-Control-Allow-Headers', '*');
+      res.status(200).send();
       next();
     });
     // app.options('*', (req, res, next) => {});
