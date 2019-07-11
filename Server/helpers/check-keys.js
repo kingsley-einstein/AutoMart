@@ -3,11 +3,7 @@
  * @param {any} obj
  * @param {string[]} keys
  */
-export const checkIfKeysArePresent = (obj, keys) => keys.every(
-  value => Object.keys(obj).some(
-    item => item === value
-  )
-);
+export const checkIfKeysArePresent = (obj, keys) => keys.every(value => Object.keys(obj).some(item => item === value));
 
 export const showMissingKeysError = (obj, keys, res) => {
   const missingKeys = [];

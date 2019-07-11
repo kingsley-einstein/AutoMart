@@ -1,15 +1,38 @@
-import { carsTable } from '../models';
-import { associations } from '../helpers';
+/* eslint-disable indent */
+// // import { carsTable } from '../models';
+// import { associations } from '../helpers';
+import { pool } from '../db/config';
 
 export class CarController {
   async create(req, res) {
     try {
-      const { body } = req;
-      body.owner = req.query.owner;
+      const { body, query, file } = req;
+      body.owner = query.owner;
       body.status = 'Available';
-      body.img_url = req.file.url;
-      const car = await carsTable.create(body);
-      await associations.car_user(car);
+      body.img_url = file.url;
+      const car = await new Promise((resolve, reject) => {
+        pool
+          .query(
+            'INSERT INTO cars (owner, created_on, state, price, manufacturer, model, body_type, img_url, status) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+            [
+              body.owner,
+              new Date(),
+              body.state,
+              body.price,
+              body.manufacturer,
+              body.model,
+              body.body_type,
+              body.img_url,
+              body.status
+            ]
+          )
+          .then((result) => {
+            const { rows } = result;
+            resolve(rows[0]);
+          })
+          .catch(err => reject(err));
+      });
+      // await associations.car_user(car);
 
       res.status(200).json({
         status: 200,
@@ -26,10 +49,16 @@ export class CarController {
   async markSold(req, res) {
     try {
       const { car_id } = req.params;
-      const car = await carsTable.update(car_id, {
-        status: 'Sold'
+      const car = await new Promise((resolve, reject) => {
+        pool
+          .query('UPDATE cars SET status = $1 WHERE id = $2', ['Sold', car_id])
+          .then((data) => {
+            const { rows } = data;
+            resolve(rows[0]);
+          })
+          .catch(err => reject(err));
       });
-      await associations.car_user(car);
+      // await associations.car_user(car);
 
       res.status(200).json({
         status: 200,
@@ -47,10 +76,16 @@ export class CarController {
     try {
       const { car_id } = req.params;
       const { price } = req.body;
-      const car = await carsTable.update(car_id, {
-        price
+      const car = await new Promise((resolve, reject) => {
+        pool
+          .query('UPDATE cars SET price = $1 WHERE id = $2', [price, car_id])
+          .then((data) => {
+            const { rows } = data;
+            resolve(rows[0]);
+          })
+          .catch(err => reject(err));
       });
-      await associations.car_user(car);
+      // await associations.car_user(car);
 
       res.status(200).json({
         status: 200,
@@ -71,8 +106,16 @@ export class CarController {
     try {
       // console.log(this);
       const { car_id } = req.params;
-      const car = await carsTable.getCarById(car_id);
-      await associations.car_user(car);
+      const car = await new Promise((resolve, reject) => {
+        pool
+          .query('SELECT * FROM cars WHERE id = $1', [car_id])
+          .then((data) => {
+            const { rows } = data;
+            resolve(rows[0]);
+          })
+          .catch(err => reject(err));
+      });
+      // await associations.car_user(car);
 
       res.status(200).json({
         status: 200,
@@ -89,19 +132,58 @@ export class CarController {
   async getCarsByStatus(req, res) {
     try {
       const {
-        status, min_price, max_price, state, manufacturer
-      } = req.query;
+ status, min_price, max_price, state, manufacturer
+} = req.query;
       let cars = null;
       cars = min_price && max_price
-        ? await carsTable.getCarsByStatusAndPriceRange(status, min_price, max_price)
-        : state
-          ? await carsTable.getCarsByStatusAndState(status, state)
+          ? await new Promise((resolve, reject) => {
+              pool
+                .query('SELECT * FROM cars WHERE status = $1 AND price <= $2 AND price >= $3', [
+                  status,
+                  max_price,
+                  min_price
+                ])
+                .then((data) => {
+                  const { rows } = data;
+                  resolve(rows);
+                })
+                .catch(err => reject(err));
+            })
+          : state
+          ? await new Promise((resolve, reject) => {
+              pool
+                .query('SELECT * FROM cars WHERE status = $1 AND state = $2', [status, state])
+                .then((data) => {
+                  const { rows } = data;
+                  resolve(rows);
+                })
+                .catch(err => reject(err));
+            })
           : manufacturer
-            ? await carsTable.getCarsByStatusAndManufacturer(status, manufacturer)
-            : await carsTable.getCarsByStatus(status);
-      cars.forEach(async (car) => {
-        await associations.car_user(car);
-      });
+          ? await new Promise((resolve, reject) => {
+              pool
+                .query('SELECT * FROM cars WHERE status = $1 AND manufacturer = $2', [
+                  status,
+                  manufacturer
+                ])
+                .then((data) => {
+                  const { rows } = data;
+                  resolve(rows);
+                })
+                .catch(err => reject(err));
+            })
+          : await new Promise((resolve, reject) => {
+              pool
+                .query('SELECT * FROM cars WHERE status = $1', [status])
+                .then((data) => {
+                  const { rows } = data;
+                  resolve(rows);
+                })
+                .catch(err => reject(err));
+            });
+      //   cars.forEach(async (car) => {
+      //     await associations.car_user(car);
+      //   });
 
       res.status(200).json({
         status: 200,
@@ -118,7 +200,15 @@ export class CarController {
   async getCarsByBodyType(req, res) {
     try {
       const { body_type } = req.query;
-      const cars = await carsTable.getCarsByBodyType(body_type);
+      const cars = await new Promise((resolve, reject) => {
+        pool
+          .query('SELECT * FROM cars WHERE body_type = $1', [body_type])
+          .then((data) => {
+            const { rows } = data;
+            resolve(rows);
+          })
+          .catch(err => reject(err));
+      });
 
       res.status(200).json({
         status: 200,
@@ -135,11 +225,20 @@ export class CarController {
   async deleteCar(req, res) {
     try {
       const { car_id } = req.params;
-      const deleted = await carsTable.delete(car_id);
-      res.status(200).json({
-        status: 200,
-        data: deleted
-      });
+      await pool
+        .query('DELETE FROM cars WHERE id = $1', [car_id])
+        .then(() => {
+          res.status(200).json({
+            status: 200,
+            data: 'Item successfully deleted'
+          });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            status: 500,
+            error: err.message
+          });
+        });
     } catch (err) {
       res.status(500).json({
         status: 500,
@@ -150,7 +249,15 @@ export class CarController {
 
   async getCars(req, res) {
     try {
-      const cars = await carsTable.getCars();
+      const cars = await new Promise((resolve, reject) => {
+        pool
+          .query('SELECT * FROM cars')
+          .then((result) => {
+            const { rows } = result;
+            resolve(rows);
+          })
+          .catch(err => reject(err));
+      });
       res.status(200).json({
         status: 200,
         data: cars
@@ -181,7 +288,15 @@ export class CarController {
   async getCarsByUser(req, res) {
     try {
       const { user_id } = req.params;
-      const cars = await carsTable.getCarsByUser(user_id);
+      const cars = await new Promise((resolve, reject) => {
+        pool
+          .query('SELECT * FROM cars WHERE user_id = $1', [user_id])
+          .then((result) => {
+            const { rows } = result;
+            resolve(rows);
+          })
+          .catch(err => reject(err));
+      });
 
       res.status(200).json({
         status: 200,
@@ -198,7 +313,15 @@ export class CarController {
   async count(req, res) {
     try {
       const { user_id } = req.params;
-      const count = await carsTable.count(user_id);
+      const count = await new Promise((resolve, reject) => {
+        pool
+          .query('SELECT * FROM cars WHERE user_id = $1', [user_id])
+          .then((result) => {
+            const { rowCount } = result;
+            resolve(rowCount);
+          })
+          .catch(err => reject(err));
+      });
 
       res.status(200).json({
         status: 200,
