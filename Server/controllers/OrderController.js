@@ -119,7 +119,7 @@ export class OrderController {
     try {
       const { order_id } = req.params;
       const { price } = req.body;
-      await pool.query('ALTER orders ADD COLUMN IF NOT EXISTS new_price_offered FLOAT, ADD COLUMN IF NOT EXISTS old_price_offered');
+      await pool.query('ALTER orders ADD COLUMN new_price_offered FLOAT, ADD COLUMN old_price_offered');
       const order = await new Promise((resolve, reject) => {
         pool
           .query('SELECT * FROM orders WHERE id = $1', [order_id])
