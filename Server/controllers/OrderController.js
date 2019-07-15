@@ -121,7 +121,7 @@ export class OrderController {
       const { price } = req.body;
       const order = await new Promise((resolve, reject) => {
         pool
-          .query('UPDATE orders SET price = $1 WHERE id = $2', [price, order_id])
+          .query('UPDATE orders SET amount = $1 WHERE id = $2', [price, order_id])
           .then((result) => {
             const { rows } = result;
             resolve(rows[0]);
