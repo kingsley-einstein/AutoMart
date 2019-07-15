@@ -2,6 +2,7 @@
 // // import { carsTable } from '../models';
 // import { associations } from '../helpers';
 import { pool } from '../db/config';
+import { checkIfKeysArePresent } from '../helpers';
 
 export class CarController {
   async create(req, res) {
@@ -49,7 +50,7 @@ export class CarController {
   async markSold(req, res) {
     try {
       const { car_id } = req.params;
-      if (req.body.status) {
+      if (!checkIfKeysArePresent(req.body, ['status']) || !req.body) {
         res.status(400).json({
           status: 400,
           error: 'Bad request'
@@ -57,7 +58,7 @@ export class CarController {
       } else {
         const car = await new Promise((resolve, reject) => {
           pool
-            .query('UPDATE cars SET status = $1 WHERE id = $2 returning *', ['Sold', car_id])
+            .query('UPDATE cars SET status = $1 WHERE id = $2 returning *', [req.body.status, car_id])
             .then((data) => {
               const { rows } = data;
               resolve(rows[0]);
