@@ -124,8 +124,8 @@
           {
             "name": "authorization",
             "in": "header",
-            "type": "string",
-            "description": "A token"
+            "description": "An authorization header",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -188,7 +188,7 @@
           {
             "name": "authorization",
             "in": "header",
-            "description": "A token",
+            "description": "An authorization header",
             "type": "string"
           }
         ],
@@ -243,7 +243,7 @@
           {
             "name": "authorization",
             "in": "header",
-            "description": "A token",
+            "description": "An authorization header",
             "type": "string"
           }
         ],
