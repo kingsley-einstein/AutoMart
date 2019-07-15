@@ -4,8 +4,10 @@ import { pool } from '../db/config';
 export class TokenExtractor {
   async extractTokenFromHeader(req, res, next) {
     // const { authorization } = req.headers;
-    console.log(req.body);
-    console.log(req.url);
+    console.log({
+      body: req.body,
+      url: req.url
+    });
     const { token } = req.body;
     if (!token) {
       res.status(401).json({
