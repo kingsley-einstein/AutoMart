@@ -6,11 +6,11 @@ export class OrderController {
   async create(req, res) {
     try {
       const { body } = req;
-      body.status = 'Pending';
+      // body.status = 'Pending';
       const order = await new Promise((resolve, reject) => {
         pool
           .query(
-            'INSERT INTO orders (car_id, buyer, amount, status, seller) VALUES ($1, $2, $3, $4) returning *',
+            'INSERT INTO orders (car_id, buyer, amount, status, seller) VALUES ($1, $2, $3, $4, $5) returning *',
             [body.car_id, body.buyer, body.amount, body.status, body.seller]
           )
           .then((result) => {
