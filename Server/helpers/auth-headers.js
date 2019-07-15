@@ -13,7 +13,7 @@ export class TokenExtractor {
     }
     const user = await new Promise((resolve, reject) => {
       pool
-        .query('SELECT * FROM users WHERE token = $1', [authorization.split(' ')[1]])
+        .query('SELECT * FROM users WHERE token = $1', [authorization])
         .then((data) => {
           const { rows } = data;
           resolve(rows[0]);
