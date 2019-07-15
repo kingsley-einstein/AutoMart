@@ -51,7 +51,7 @@ export class CarController {
       const { car_id } = req.params;
       const car = await new Promise((resolve, reject) => {
         pool
-          .query('UPDATE cars SET status = $1 WHERE id = $2', ['Sold', car_id])
+          .query('UPDATE cars SET status = $1 WHERE id = $2 returning *', ['Sold', car_id])
           .then((data) => {
             const { rows } = data;
             resolve(rows[0]);
@@ -78,7 +78,7 @@ export class CarController {
       const { price } = req.body;
       const car = await new Promise((resolve, reject) => {
         pool
-          .query('UPDATE cars SET price = $1 WHERE id = $2', [price, car_id])
+          .query('UPDATE cars SET price = $1 WHERE id = $2 returning *', [price, car_id])
           .then((data) => {
             const { rows } = data;
             resolve(rows[0]);

@@ -121,7 +121,7 @@ export class OrderController {
       const { price } = req.body;
       const order = await new Promise((resolve, reject) => {
         pool
-          .query('UPDATE orders SET amount = $1 WHERE id = $2', [price, order_id])
+          .query('UPDATE orders SET amount = $1 WHERE id = $2 returning *', [price, order_id])
           .then((result) => {
             const { rows } = result;
             resolve(rows[0]);
@@ -149,7 +149,7 @@ export class OrderController {
       const { status } = req.body;
       const order = await new Promise((resolve, reject) => {
         pool
-          .query('UPDATE orders SET status = $1 WHERE id = $2', [status, order_id])
+          .query('UPDATE orders SET status = $1 WHERE id = $2 returning *', [status, order_id])
           .then((result) => {
             const { rows } = result;
             resolve(rows[0]);
