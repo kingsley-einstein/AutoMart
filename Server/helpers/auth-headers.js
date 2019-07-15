@@ -5,6 +5,7 @@ export class TokenExtractor {
   async extractTokenFromHeader(req, res, next) {
     // const { authorization } = req.headers;
     console.log(req.body);
+    console.log(req.url);
     const { token } = req.body;
     if (!token) {
       res.status(401).json({
