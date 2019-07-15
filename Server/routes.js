@@ -41,7 +41,7 @@ router.get('/cars/:user_id/all', extractor.extractTokenFromHeader, carController
 router.get(
   '/car',
   extractor.extractTokenFromHeader,
-  carController.getCarsByStatusOrBodyType.bind(carController)
+  carController.getCars
 );
 router.delete('/car/:car_id', extractor.extractTokenFromHeader, carController.deleteCar);
 
