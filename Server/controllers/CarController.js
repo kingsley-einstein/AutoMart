@@ -49,21 +49,27 @@ export class CarController {
   async markSold(req, res) {
     try {
       const { car_id } = req.params;
-      const car = await new Promise((resolve, reject) => {
-        pool
-          .query('UPDATE cars SET status = $1 WHERE id = $2 returning *', ['Sold', car_id])
-          .then((data) => {
-            const { rows } = data;
-            resolve(rows[0]);
-          })
-          .catch(err => reject(err));
-      });
-      // await associations.car_user(car);
-
-      res.status(200).json({
-        status: 200,
-        data: car
-      });
+      if (req.body.status) {
+        res.status(400).json({
+          status: 400,
+          error: 'Bad request'
+        });
+      } else {
+        const car = await new Promise((resolve, reject) => {
+          pool
+            .query('UPDATE cars SET status = $1 WHERE id = $2 returning *', ['Sold', car_id])
+            .then((data) => {
+              const { rows } = data;
+              resolve(rows[0]);
+            })
+            .catch(err => reject(err));
+        });
+        // await associations.car_user(car);
+        res.status(200).json({
+          status: 200,
+          data: car
+        });
+      }
     } catch (err) {
       res.status(500).json({
         status: 500,
