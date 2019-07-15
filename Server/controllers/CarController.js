@@ -13,7 +13,7 @@ export class CarController {
       const car = await new Promise((resolve, reject) => {
         pool
           .query(
-            'INSERT INTO cars (owner, created_on, state, price, manufacturer, model, body_type, status) values ($1, $2, $3, $4, $5, $6, $7, $8)',
+            'INSERT INTO cars (owner, created_on, state, price, manufacturer, model, body_type, status, img_url) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
             [
               body.owner,
               new Date(),
@@ -22,7 +22,8 @@ export class CarController {
               body.manufacturer,
               body.model,
               body.body_type,
-              body.status
+              body.status,
+              body.img_url
             ]
           )
           .then((result) => {
