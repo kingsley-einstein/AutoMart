@@ -6,14 +6,14 @@ import { pool } from '../db/config';
 export class CarController {
   async create(req, res) {
     try {
-      const { body, query, file } = req;
+      const { body, query } = req;
       body.owner = query.owner;
       body.status = 'Available';
-      body.img_url = file.url;
+      // body.img_url = file.url;
       const car = await new Promise((resolve, reject) => {
         pool
           .query(
-            'INSERT INTO cars (owner, created_on, state, price, manufacturer, model, body_type, img_url, status) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)',
+            'INSERT INTO cars (owner, created_on, state, price, manufacturer, model, body_type, status) values ($1, $2, $3, $4, $5, $6, $7, $8)',
             [
               body.owner,
               new Date(),
@@ -22,7 +22,6 @@ export class CarController {
               body.manufacturer,
               body.model,
               body.body_type,
-              body.img_url,
               body.status
             ]
           )
