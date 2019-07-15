@@ -1,10 +1,10 @@
 import { Router } from 'express';
-// import { serve, setup } from 'swagger-ui-express';
+import { serve, setup } from 'swagger-ui-express';
 import {
   UserController, CarController, OrderController, FlagController
 } from './controllers';
 import { TokenExtractor, upload } from './helpers';
-// import swaggerDoc from './docs/swagger.json';
+import swaggerDoc from './docs/swagger.json';
 
 const router = Router();
 const file = upload();
@@ -21,8 +21,8 @@ router.get('/', (req, res) => {
   });
 });
 
-// router.use('/', serve);
-// router.get('/docs', setup(swaggerDoc));
+router.use('/', serve);
+router.get('/docs', setup(swaggerDoc));
 
 // User specific routes
 router.post('/auth/signup', userController.create);
