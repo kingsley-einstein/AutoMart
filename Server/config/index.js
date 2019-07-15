@@ -11,9 +11,10 @@ export default class Config {
     // app.use(passport.initialize());
     app.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Methods', '*');
-      res.header('Access-Control-Allow-Headers', '*');
-      res.status(200).send();
+      res.header('Access-Control-Allow-Credentials', true);
+      res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'Content-Type');
+      // res.status(200).send();
       next();
     });
     // app.options('*', (req, res, next) => {});
