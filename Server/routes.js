@@ -3,11 +3,11 @@ import { serve, setup } from 'swagger-ui-express';
 import {
   UserController, CarController, OrderController, FlagController
 } from './controllers';
-import { TokenExtractor, upload } from './helpers';
+import { TokenExtractor } from './helpers';
 import swaggerDoc from './docs/swagger.json';
 
 const router = Router();
-const file = upload();
+// const file = upload();
 const extractor = new TokenExtractor();
 
 const userController = new UserController();
@@ -32,7 +32,7 @@ router.get('/users', extractor.extractTokenFromHeader, userController.getAllUser
 router.get('/users/:user_id', extractor.extractTokenFromHeader, userController.getUser);
 
 // Car specific routes
-router.post('/car', extractor.extractTokenFromHeader, file.single('picture'), carController.create);
+router.post('/car', extractor.extractTokenFromHeader, carController.create);
 router.patch('/car/:car_id/status', extractor.extractTokenFromHeader, carController.markSold);
 router.patch('/car/:car_id/price', extractor.extractTokenFromHeader, carController.updatePrice);
 router.get('/car/:car_id', extractor.extractTokenFromHeader, carController.getCar);
