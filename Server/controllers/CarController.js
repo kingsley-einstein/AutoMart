@@ -115,7 +115,7 @@ export class CarController {
       const { car_id } = req.params;
       const car = await new Promise((resolve, reject) => {
         pool
-          .query('SELECT * FROM cars WHERE id = $1', [car_id])
+          .query('SELECT * FROM cars WHERE id = $1 returning *', [car_id])
           .then((data) => {
             const { rows } = data;
             resolve(rows[0]);
