@@ -119,9 +119,21 @@ export class OrderController {
     try {
       const { order_id } = req.params;
       const { price } = req.body;
+      await pool.query('ALTER orders ADD COLUMN IF NOT EXISTS new_price_offered FLOAT, ADD COLUMN IF NOT EXISTS old_price_offered');
       const order = await new Promise((resolve, reject) => {
         pool
-          .query('UPDATE orders SET amount = $1 WHERE id = $2 returning *', [price, order_id])
+          .query('SELECT * FROM orders WHERE id = $1', [order_id])
+          .then((result) => {
+            const { rows } = result;
+            resolve(rows[0]);
+          })
+          .catch(err => reject(err));
+      });
+      const updatedOrder = await new Promise((resolve, reject) => {
+        pool
+          .query('UPDATE orders SET new_price_offered = $1, old_price_offered = $2, amount = $3 WHERE id = $4 returning *', [
+            price, order.amount, price, order_id
+          ])
           .then((result) => {
             const { rows } = result;
             resolve(rows[0]);
@@ -133,7 +145,7 @@ export class OrderController {
 
       res.status(200).json({
         status: 200,
-        data: order
+        data: updatedOrder
       });
     } catch (err) {
       res.status(500).json({
