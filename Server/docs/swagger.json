@@ -18,6 +18,12 @@
             "in": "path",
             "description": "ID of user to retrieve.",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "responses": {
@@ -114,7 +120,14 @@
     "/users": {
       "get": {
         "description": "Gets all users",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string",
+            "description": "A token"
+          }
+        ],
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -171,6 +184,12 @@
             "in": "formData",
             "description": "Car image.",
             "type": "file"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -220,6 +239,12 @@
           {
             "name": "body_type",
             "description": "The vehicle's body type. <car, truck, van e.t.c.>."
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -242,6 +267,12 @@
             "in": "path",
             "description": "ID of the car to mark as sold.",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -277,6 +308,12 @@
                 }
               }
             }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -300,6 +337,12 @@
             "in": "path",
             "description": "ID of car which information is retrieved.",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -320,6 +363,12 @@
             "in": "path",
             "description": "ID of the car to delete",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -350,6 +399,12 @@
             "in": "path",
             "description": "ID of user.",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -380,6 +435,12 @@
             "in": "path",
             "description": "The user's ID",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -404,6 +465,12 @@
             "schema": {
               "$ref": "#/definitions/Order"
             }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -427,6 +494,12 @@
             "in": "path",
             "description": "ID of the order to retrieve",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -449,6 +522,12 @@
             "in": "path",
             "description": "ID of the seller",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -471,6 +550,12 @@
             "in": "path",
             "description": "ID of the buyer",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -493,6 +578,12 @@
             "in": "path",
             "description": "ID of user.",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -523,6 +614,12 @@
             "in": "path",
             "description": "ID of the seller.",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -566,6 +663,12 @@
                 }
               }
             }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -602,6 +705,12 @@
                 }
               }
             }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -638,6 +747,12 @@
                 }
               }
             }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -653,6 +768,14 @@
       },
       "get": {
         "description": "Gets all flagged ADs.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
+          }
+        ],
         "produces": ["application/json"],
         "responses": {
           "200": {
@@ -673,6 +796,12 @@
             "in": "path",
             "description": "Flag ID.",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
@@ -693,6 +822,12 @@
             "in": "path",
             "description": "Flag ID.",
             "type": "number"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "description": "A token",
+            "type": "string"
           }
         ],
         "produces": ["application/json"],
