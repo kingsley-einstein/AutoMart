@@ -121,7 +121,8 @@ export class OrderController {
       const { price } = req.body;
       // await pool.query('ALTER orders DROP COLUMN IF EXISTS new_price_ordered');
       // await pool.query('ALTER orders DROP COLUMN IF EXISTS old_price_ordered');
-      await pool.query('ALTER orders ADD COLUMN new_price_offered FLOAT, ADD COLUMN old_price_offered FLOAT');
+      // await pool.query
+      // ('ALTER orders ADD COLUMN new_price_offered FLOAT, ADD COLUMN old_price_offered FLOAT');
       const order = await new Promise((resolve, reject) => {
         pool
           .query('SELECT * FROM orders WHERE id = $1', [order_id])
@@ -133,8 +134,8 @@ export class OrderController {
       });
       const updatedOrder = await new Promise((resolve, reject) => {
         pool
-          .query('UPDATE orders SET new_price_offered = $1, old_price_offered = $2, amount = $3 WHERE id = $4 returning *', [
-            price, order.amount, price, order_id
+          .query('UPDATE orders SET amount = $1, WHERE id = $2 returning *', [
+            price, order_id
           ])
           .then((result) => {
             const { rows } = result;
@@ -144,7 +145,8 @@ export class OrderController {
       });
       // await associations.order_car(order);
       // await associations.order_user(order);
-
+      updatedOrder.new_price_offered = price;
+      updatedOrder.old_price_offered = order.amount;
       res.status(200).json({
         status: 200,
         data: updatedOrder
