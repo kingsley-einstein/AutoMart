@@ -1,9 +1,9 @@
-import { config } from 'dotenv';
-import path from 'path';
+// import { config } from 'dotenv';
+// import path from 'path';
 
-config({
-  path: path.join(__dirname, '/.env')
-});
+// config({
+//   path: path.join(__dirname, '/.env')
+// });
 
 export const environment = {
   cloud_name: process.env.CLOUD_NAME,
@@ -14,5 +14,6 @@ export const environment = {
   password: process.env.DB_PASS,
   port: process.env.DB_PORT,
   database: process.env.DB,
-  host: process.env.DB_HOST
+  host: process.env.DB_HOST,
+  connectionString: process.env.DATABASE_URL
 };

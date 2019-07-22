@@ -1,13 +1,13 @@
 import { Router } from 'express';
-// import { serve, setup } from 'swagger-ui-express';
+import { serve, setup } from 'swagger-ui-express';
 import {
   UserController, CarController, OrderController, FlagController
 } from './controllers';
-import { TokenExtractor, upload } from './helpers';
-// import swaggerDoc from './docs/swagger.json';
+import { TokenExtractor } from './helpers';
+import swaggerDoc from './docs/swagger.json';
 
 const router = Router();
-const file = upload();
+// const file = upload();
 const extractor = new TokenExtractor();
 
 const userController = new UserController();
@@ -21,8 +21,8 @@ router.get('/', (req, res) => {
   });
 });
 
-// router.use('/', serve);
-// router.get('/docs', setup(swaggerDoc));
+router.use('/', serve);
+router.get('/docs', setup(swaggerDoc));
 
 // User specific routes
 router.post('/auth/signup', userController.create);
@@ -32,7 +32,7 @@ router.get('/users', extractor.extractTokenFromHeader, userController.getAllUser
 router.get('/users/:user_id', extractor.extractTokenFromHeader, userController.getUser);
 
 // Car specific routes
-router.post('/car', extractor.extractTokenFromHeader, file.single('picture'), carController.create);
+router.post('/car', extractor.extractTokenFromHeader, carController.create);
 router.patch('/car/:car_id/status', extractor.extractTokenFromHeader, carController.markSold);
 router.patch('/car/:car_id/price', extractor.extractTokenFromHeader, carController.updatePrice);
 router.get('/car/:car_id', extractor.extractTokenFromHeader, carController.getCar);
@@ -41,7 +41,7 @@ router.get('/cars/:user_id/all', extractor.extractTokenFromHeader, carController
 router.get(
   '/car',
   extractor.extractTokenFromHeader,
-  carController.getCarsByStatusOrBodyType.bind(carController)
+  carController.getCars
 );
 router.delete('/car/:car_id', extractor.extractTokenFromHeader, carController.deleteCar);
 

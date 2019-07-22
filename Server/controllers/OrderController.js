@@ -6,11 +6,11 @@ export class OrderController {
   async create(req, res) {
     try {
       const { body } = req;
-      body.status = 'Pending';
+      // body.status = 'Pending';
       const order = await new Promise((resolve, reject) => {
         pool
           .query(
-            'INSERT INTO orders (car_id, buyer, amount, status, seller) VALUES ($1, $2, $3, $4)',
+            'INSERT INTO orders (car_id, buyer, amount, status, seller) VALUES ($1, $2, $3, $4, $5) returning *',
             [body.car_id, body.buyer, body.amount, body.status, body.seller]
           )
           .then((result) => {
@@ -119,9 +119,24 @@ export class OrderController {
     try {
       const { order_id } = req.params;
       const { price } = req.body;
+      // await pool.query('ALTER orders DROP COLUMN IF EXISTS new_price_ordered');
+      // await pool.query('ALTER orders DROP COLUMN IF EXISTS old_price_ordered');
+      // await pool.query
+      // ('ALTER orders ADD COLUMN new_price_offered FLOAT, ADD COLUMN old_price_offered FLOAT');
       const order = await new Promise((resolve, reject) => {
         pool
-          .query('UPDATE orders SET price = $1 WHERE id = $2', [price, order_id])
+          .query('SELECT * FROM orders WHERE id = $1', [order_id])
+          .then((result) => {
+            const { rows } = result;
+            resolve(rows[0]);
+          })
+          .catch(err => reject(err));
+      });
+      const updatedOrder = await new Promise((resolve, reject) => {
+        pool
+          .query('UPDATE orders SET amount = $1 WHERE id = $2 returning *', [
+            price, order_id
+          ])
           .then((result) => {
             const { rows } = result;
             resolve(rows[0]);
@@ -130,10 +145,11 @@ export class OrderController {
       });
       // await associations.order_car(order);
       // await associations.order_user(order);
-
+      updatedOrder.new_price_offered = price;
+      updatedOrder.old_price_offered = order.amount;
       res.status(200).json({
         status: 200,
-        data: order
+        data: updatedOrder
       });
     } catch (err) {
       res.status(500).json({
@@ -149,7 +165,7 @@ export class OrderController {
       const { status } = req.body;
       const order = await new Promise((resolve, reject) => {
         pool
-          .query('UPDATE orders SET status = $1 WHERE id = $2', [status, order_id])
+          .query('UPDATE orders SET status = $1 WHERE id = $2 returning *', [status, order_id])
           .then((result) => {
             const { rows } = result;
             resolve(rows[0]);

@@ -9,7 +9,7 @@ export class FlagController {
       const flag = await new Promise((resolve, reject) => {
         pool
           .query(
-            'INSERT INTO flags(car_id, created_on, reason, description) values($1, $2, $3, $4)',
+            'INSERT INTO flags(car_id, created_on, reason, description) values($1, $2, $3, $4) returning *',
             [body.car_id, new Date(), body.reason, body.description]
           )
           .then((result) => {
